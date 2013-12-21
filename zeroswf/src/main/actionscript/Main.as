@@ -13,7 +13,7 @@ public class Main extends MovieClip {
     private var symbolClass:Class;
 
     /* ZERO obfuscator */
-    private var zero:SWFObfuscatorZeroImpl;
+    private var obfuscator:SWFObfuscatorZeroImpl;
 
 
     public function Main() {
@@ -23,8 +23,9 @@ public class Main extends MovieClip {
     public function onAdded(event:Event):void {
         removeEventListener(Event.ADDED_TO_STAGE, onAdded);
 
-        zero = new SWFObfuscatorZeroImpl();
-        var zeroBA:ByteArray = zero.obfuscate(SWFUtil.clone(new symbolClass()));
+        obfuscator = new SWFObfuscatorZeroImpl();
+        var sourceBA:ByteArray = SWFUtil.decompress(SWFUtil.clone(new symbolClass()));
+        var obfuscatedBA:ByteArray = obfuscator.obfuscate(sourceBA);
     }
 }
 }

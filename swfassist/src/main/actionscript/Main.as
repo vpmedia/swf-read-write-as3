@@ -14,7 +14,7 @@ public class Main extends MovieClip {
 
 
     /* SWF-ASSIST obfuscator */
-    private var swfassist:SWFObfuscatorSWFAssistImpl;
+    private var obfuscator:SWFObfuscatorSWFAssistImpl;
 
 
     public function Main() {
@@ -24,8 +24,9 @@ public class Main extends MovieClip {
     public function onAdded(event:Event):void {
         removeEventListener(Event.ADDED_TO_STAGE, onAdded);
 
-        swfassist = new SWFObfuscatorSWFAssistImpl();
-        var swfassistBA:ByteArray = swfassist.obfuscate(SWFUtil.clone(new symbolClass()));
+        obfuscator = new SWFObfuscatorSWFAssistImpl();
+        var sourceBA:ByteArray = SWFUtil.decompress(SWFUtil.clone(new symbolClass()));
+        var obfuscatedBA:ByteArray = obfuscator.obfuscate(sourceBA);
     }
 }
 }

@@ -20,6 +20,7 @@
 
 package hu.vpmedia.swf.abstraction {
 import abstraction.abc.ABC;
+import abstraction.abc.ABCNamespace;
 
 import hu.vpmedia.collections.HashMap;
 import hu.vpmedia.swf.core.BaseRenameRules;
@@ -78,33 +79,35 @@ public class PackageRenamer {
         }
     }
 
-    private function collectPackages(abc:*):void {
+    private function collectPackages(abc:ABC):void {
+        for each (var ns:ABCNamespace in abc.namespace_pool) {
+            var packageName:String = ns.name;
+            if (isAllowed(packageName) && ns.kind == ABC.PackageNamespace && packageList.indexOf(packageName) == -1) {
+                packageList.push(packageName);
+            }
+        }
         IdGenerator.sortArrayByLength(packageList);
     }
 
-    private function renamePackages(abc:*):void {
+    private function renamePackages(abc:ABC):void {
         trace(this, "renamePackages", packageList.length);
-    }
-
-    private function isValid(packageName:String):Boolean {
-        return (packageName && packageName != "");
+        for each (var ns:ABCNamespace in abc.namespace_pool) {
+            var packageName:String = ns.name;
+            if (isAllowed(packageName) && ns.kind == ABC.PackageNamespace && packageList.indexOf(packageName) > -1) {
+                ns.name = renamedPackages.getValue(packageName);
+                trace(packageName + " => " +  ns.name);
+            }
+        }
     }
 
     private function isAllowed(packageName:String):Boolean {
         // TODO: validate by RenameActionRule
-        return packageName.indexOf("flash.") != 0 && packageName.indexOf("mx.") != 0 && packageName.indexOf("spark.") != 0;
-    }
-
-    public function getObfuscatedName(packageName:String):String {
-        return renamedPackages.getValue(packageName);
-    }
-
-    public function getPackages():Array {
-        return packageList;
-    }
-
-    public function getObfuscationMap():HashMap {
-        return renamedPackages;
+        return packageName && packageName != ""
+                && packageName.indexOf("flash.") != 0
+                && packageName.indexOf("flashx.") != 0
+                && packageName.indexOf("mx.") != 0
+                && packageName.indexOf("spark.") != 0
+                && packageName.indexOf("__AS3__.") != 0;
     }
 }
 }

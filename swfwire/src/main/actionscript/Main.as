@@ -13,7 +13,7 @@ public class Main extends MovieClip {
     private var symbolClass:Class;
 
     /* SWF-WIRE obfuscator */
-    private var swfwire:SWFObfuscatorSWFWireImpl;
+    private var obfuscator:SWFObfuscatorSWFWireImpl;
 
 
     public function Main() {
@@ -23,8 +23,9 @@ public class Main extends MovieClip {
     public function onAdded(event:Event):void {
         removeEventListener(Event.ADDED_TO_STAGE, onAdded);
 
-        swfwire = new SWFObfuscatorSWFWireImpl();
-        var swfwireBA:ByteArray = swfwire.obfuscate(SWFUtil.clone(new symbolClass()));
+        obfuscator = new SWFObfuscatorSWFWireImpl();
+        var sourceBA:ByteArray = SWFUtil.decompress(SWFUtil.clone(new symbolClass()));
+        var obfuscatedBA:ByteArray = obfuscator.obfuscate(sourceBA);
     }
 }
 }

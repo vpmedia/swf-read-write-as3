@@ -57,7 +57,6 @@ public class SWFReaderWrapper {
         processTags();
     }
 
-    //
     protected function processTags():void {
         var tags:Array = swf.tags.tags;
         var n:int = swf.tags.numTags;
@@ -81,14 +80,5 @@ public class SWFReaderWrapper {
                 break;
         }
     }
-
-    /*protected function getNamesByABC(abcData:ByteArrayInputStream): Array
-     {
-     trace(this, "getNamesByABC", abcData.length, abcData.position);
-     var res: Array = [];
-     var str: String = abcData.readUTF();
-     if (str) res.push(str.replace(/\//g, "."));
-     return res;
-     }*/
 }
 }

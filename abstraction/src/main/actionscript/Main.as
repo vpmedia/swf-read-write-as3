@@ -16,8 +16,7 @@ public class Main extends MovieClip {
     private var symbolClass:Class;
 
     /* ABSTRACTION obfuscator */
-    private var abstraction:SWFObfuscatorAbstractionImpl;
-
+    private var obfuscator:SWFObfuscatorAbstractionImpl;
 
     public function Main() {
         addEventListener(Event.ADDED_TO_STAGE, onAdded);
@@ -26,8 +25,9 @@ public class Main extends MovieClip {
     public function onAdded(event:Event):void {
         removeEventListener(Event.ADDED_TO_STAGE, onAdded);
 
-        abstraction = new SWFObfuscatorAbstractionImpl();
-        var abstractionBA:ByteArray = abstraction.obfuscate(SWFUtil.clone(new symbolClass()));
+        obfuscator = new SWFObfuscatorAbstractionImpl();
+        var sourceBA:ByteArray = SWFUtil.decompress(SWFUtil.clone(new symbolClass()));
+        var obfuscatedBA:ByteArray = obfuscator.obfuscate(sourceBA);
     }
 }
 }

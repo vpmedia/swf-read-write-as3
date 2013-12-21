@@ -3,7 +3,7 @@ import flash.display.MovieClip;
 import flash.events.Event;
 import flash.utils.ByteArray;
 
-import hu.vpmedia.swf.eval.SWFObfuscatorEvalImpl;
+import hu.vpmedia.swf.bruteforce.SWFObfuscatorBruteForceImpl;
 import hu.vpmedia.utils.SWFUtil;
 
 public class Main extends MovieClip {
@@ -12,9 +12,8 @@ public class Main extends MovieClip {
     [Embed(source="/../../../../commons/src/main/resources/Main-22.swf", mimeType="application/octet-stream")]
     private var symbolClass:Class;
 
-    /* EVAL obfuscator */
-    private var obfuscator:SWFObfuscatorEvalImpl;
-
+    /* BRUTE obfuscator */
+    private var brute:SWFObfuscatorBruteForceImpl;
 
     public function Main() {
         addEventListener(Event.ADDED_TO_STAGE, onAdded);
@@ -23,9 +22,10 @@ public class Main extends MovieClip {
     public function onAdded(event:Event):void {
         removeEventListener(Event.ADDED_TO_STAGE, onAdded);
 
-        obfuscator = new SWFObfuscatorEvalImpl();
+        brute = new SWFObfuscatorBruteForceImpl();
+
         var sourceBA:ByteArray = SWFUtil.decompress(SWFUtil.clone(new symbolClass()));
-        var obfuscatedBA:ByteArray = obfuscator.obfuscate(sourceBA);
+        var obfuscatedBA:ByteArray = brute.obfuscate(sourceBA);
     }
 }
 }
