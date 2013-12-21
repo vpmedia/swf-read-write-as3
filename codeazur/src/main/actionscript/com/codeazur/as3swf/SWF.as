@@ -115,8 +115,8 @@
 			}
 			signature += String.fromCharCode(signatureByte);
 			version = bytes.readUI8();
-			fileLength = bytes.readUI32();
-			fileLengthCompressed = bytes.length;
+            fileLength = bytes.readUI32();
+            fileLengthCompressed = bytes.length;
 			if (compressed) {
 				// The following data (up to end of file) is compressed, if header has CWS or ZWS signature
 				bytes.swfUncompress(compressionMethod, fileLength);

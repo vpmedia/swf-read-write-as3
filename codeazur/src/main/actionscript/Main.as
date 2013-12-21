@@ -2,6 +2,7 @@ package {
 import flash.display.MovieClip;
 import flash.events.Event;
 import flash.utils.ByteArray;
+import flash.utils.ByteArray;
 
 import hu.vpmedia.swf.bruteforce.SWFObfuscatorBruteForceImpl;
 import hu.vpmedia.swf.codeazur.SWFObfuscatorCodeazurImpl;
@@ -31,9 +32,19 @@ public class Main extends MovieClip {
         brute = new SWFObfuscatorBruteForceImpl();
         codeazur = new SWFObfuscatorCodeazurImpl();
 
-        trace("#### BRUTE FORCE ####");
-        var bruteForcedBA:ByteArray = brute.obfuscate(SWFUtil.decompress(SWFUtil.clone(new symbolClass())));
-        //var codeazurBA:ByteArray = codeazur.obfuscate(SWFUtil.clone(new symbolClass()));
+        var source:ByteArray;
+        var result:ByteArray;
+
+        // test with compressed input
+        source = SWFUtil.clone(new symbolClass());
+        result = brute.obfuscate(source);
+
+        // test with decompressed input
+        source = SWFUtil.decompress(SWFUtil.clone(new symbolClass()));
+        result = brute.obfuscate(source);
+
+        source = SWFUtil.decompress(SWFUtil.clone(new symbolClass()));
+        result = codeazur.obfuscate(source);
     }
 }
 }
