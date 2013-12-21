@@ -70,7 +70,7 @@ public class PackageRenamer {
             var childPackage:String = childPackages[i];
             var separator:String = (parent == "" ? "" : ".");
             var packageName:String = parent + separator + childPackage;
-            var obfuscatedPackageName:String = obfuscatedParentPackage + separator + (isAllowed(packageName) ? IdGenerator.next(childPackage) : childPackage);
+            var obfuscatedPackageName:String = obfuscatedParentPackage + separator + (renameRules.isAllowedPackage(packageName) ? IdGenerator.next(childPackage) : childPackage);
             //trace(packageName, obfuscatedPackageName);
             renamedPackages.put(packageName, obfuscatedPackageName);
             generateObfuscatedNames(packageName);
@@ -79,90 +79,12 @@ public class PackageRenamer {
 
     private function collectPackages(abc:DoABC):void {
         // trace(this, "collectPackages");
-        /*trace("\tNamespaces:");
-         for each (var ns:NamespaceToken in abc.cpool.namespaces)
-         {
-         if(ns.kind == NamespaceToken.KIND_PackageNamespace  && packageList.indexOf(ns.name) == -1)
-         {
-         trace(ns.kind, ns.name);
-         }
-         }*/
-        /*  trace("\tMultinames:");
-         for each (var mn:MultinameToken in abc.cpool.multinames)
-         {
-         trace(mn.kind, mn.data);
-         }*/
-        /* var packageName:String;
-
-         for each (var ns:NamespaceToken in abc.cpool.namespaces)
-         {
-         packageName = ns.name;
-         if(isAllowed(packageName)&& isValid(packageName) && ns.kind == NamespaceToken.KIND_PackageNamespace  && packageList.indexOf(packageName) == -1)
-         {
-         //trace(ns.name);
-         packageList.push(packageName);
-         }
-         }*/
-        /*for each (var nt:NominalType in abc.types)
-         {
-         packageName = nt.name.abcNamespace.name;
-         if(isAllowed(packageName)&& isValid(packageName) && packageList.indexOf(packageName) == -1)
-         {
-         // trace("\t", packageName);
-         packageList.push(packageName);
-         }
-         } */
         IdGenerator.sortArrayByLength(packageList);
     }
 
     private function renamePackages(abc:DoABC):void {
         trace(this, "renamePackages", packageList.length);
-        /*
-         var packageName:String;
-         var obfuscatedPackageName:String;
-
-         for each (var ns:NamespaceToken in abc.cpool.namespaces)
-         {
-         packageName = ns.name;
-         obfuscatedPackageName = renamedPackages.getValue(packageName);
-         if(isAllowed(packageName) && isValid(packageName) && ns.kind == NamespaceToken.KIND_PackageNamespace && packageList.indexOf(packageName) != -1)
-         {
-         //trace(ns.name);
-         ns.name = obfuscatedPackageName;
-         // trace("\t", packageName, "=>", obfuscatedPackageName);
-         }
-         }*/
-        /*for each (var nt:NominalType in abc.types)
-         {
-         packageName = nt.name.abcNamespace.name;
-         if(isAllowed(packageName) && isValid(packageName) && packageList.indexOf(packageName) != -1)
-         {
-         obfuscatedPackageName = renamedPackages.getValue(packageName);
-         nt.name.abcNamespace.name = obfuscatedPackageName;
-         //trace("\t", packageName, "=>", obfuscatedPackageName);
-         }
-         }*/
     }
 
-    private function isValid(packageName:String):Boolean {
-        return (packageName && packageName != "");
-    }
-
-    private function isAllowed(packageName:String):Boolean {
-        // TODO: validate by RenameActionRule
-        return packageName.indexOf("flash.") != 0 && packageName.indexOf("mx.") != 0 && packageName.indexOf("spark.") != 0;
-    }
-
-    public function getObfuscatedName(packageName:String):String {
-        return renamedPackages.getValue(packageName);
-    }
-
-    public function getPackages():Array {
-        return packageList;
-    }
-
-    public function getObfuscationMap():HashMap {
-        return renamedPackages;
-    }
 }
 }

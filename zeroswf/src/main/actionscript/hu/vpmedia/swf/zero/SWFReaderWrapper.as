@@ -21,38 +21,21 @@
 package hu.vpmedia.swf.zero {
 import flash.utils.ByteArray;
 
-import hu.vpmedia.collections.HashMap;
-
 import zero.swf.SWF;
 import zero.swf.avm2.ABCClass;
-import zero.swf.avm2.ABCTrait;
 import zero.swf.utils.getDocClass;
 
 public class SWFReaderWrapper {
     public var swf:SWF;
-    public var abcTagList:Vector.<*>;
-    public var abcList:Vector.<*>;
-    public var abcTagMap:HashMap;
-    public var symbolTagList:Vector.<*>;
 
     public function SWFReaderWrapper() {
     }
 
     public function parse(data:ByteArray):void {
-        abcList = new Vector.<*>();
-        abcTagList = new Vector.<*>();
-        abcTagMap = new HashMap(false);
-        symbolTagList = new Vector.<*>();
         swf = new SWF();
-        trace(this, "parse", swf);
         swf.initBySWFData(data, null);
         var docClass:ABCClass = getDocClass(swf);
-        trace(docClass);
-        if (docClass) {
-            for each(var trait:ABCTrait in docClass.ctraitV) {
-            }
-
-        }
+        trace(this, "parse", docClass.toXML(null, null));
     }
 }
 }

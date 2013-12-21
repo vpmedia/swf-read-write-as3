@@ -4,7 +4,6 @@ import flash.events.Event;
 import flash.utils.ByteArray;
 import flash.utils.ByteArray;
 
-import hu.vpmedia.swf.bruteforce.SWFObfuscatorBruteForceImpl;
 import hu.vpmedia.swf.codeazur.SWFObfuscatorCodeazurImpl;
 import hu.vpmedia.utils.SWFUtil;
 import hu.vpmedia.utils.SWFUtil;

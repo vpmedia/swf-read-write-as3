@@ -70,7 +70,7 @@ public class SWFUtil {
             return data;
         else if (signature == LZMA_FLAG)
             return decompressLZMA(data, fileLength);
-        else  if (signature == ZLIB_FLAG)
+        else if (signature == ZLIB_FLAG)
             return decompressZLIB(data);
         return null;
     }
@@ -83,7 +83,7 @@ public class SWFUtil {
         header.writeBytes(data, 3, 5);
         // read the rest, compressed
         // Write LZMA properties
-        for(var i:uint = 0; i < 5; i++) {
+        for (var i:uint = 0; i < 5; i++) {
             compressed.writeByte(data[i + 12]);
         }
         // Write uncompressed length (64 bit)

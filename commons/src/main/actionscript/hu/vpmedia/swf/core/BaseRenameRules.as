@@ -43,5 +43,15 @@ public class BaseRenameRules {
     public function allowRename(id:String):Boolean {
         return BaseRenameRule(_rules[id]).isRenameAllowed();
     }
+
+    public function isAllowedPackage(packageName:String):Boolean {
+        // TODO: validate by RenameActionRule
+        return packageName && packageName != ""
+                && packageName.indexOf("flash.") != 0
+                && packageName.indexOf("flashx.") != 0
+                && packageName.indexOf("mx.") != 0
+                && packageName.indexOf("spark.") != 0
+                && packageName.indexOf("__AS3__.") != 0;
+    }
 }
 }

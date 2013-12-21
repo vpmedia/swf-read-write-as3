@@ -47,7 +47,7 @@ public class SWFObfuscatorBruteForceImpl implements IBaseSWFObfuscator {
         swfReader.parse(data);
         // Rename packages
         packageRenamer.rename(swfReader.abcList);
-        writeBackTags(data, packageRenamer.getPackages(), packageRenamer.getObfuscationMap());
+        writeBackTags(data, packageRenamer.getPackageList(), packageRenamer.getPackageMap());
         // Rename classes
         classRenamer.rename(swfReader.abcList);
         // Rename members

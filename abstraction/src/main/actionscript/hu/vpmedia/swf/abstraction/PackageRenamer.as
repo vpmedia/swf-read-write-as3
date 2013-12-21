@@ -72,7 +72,7 @@ public class PackageRenamer {
             var childPackage:String = childPackages[i];
             var separator:String = (parent == "" ? "" : ".");
             var packageName:String = parent + separator + childPackage;
-            var obfuscatedPackageName:String = obfuscatedParentPackage + separator + (isAllowed(packageName) ? IdGenerator.next(childPackage) : childPackage);
+            var obfuscatedPackageName:String = obfuscatedParentPackage + separator + (renameRules.isAllowedPackage(packageName) ? IdGenerator.next(childPackage) : childPackage);
             //trace(packageName, obfuscatedPackageName);
             renamedPackages.put(packageName, obfuscatedPackageName);
             generateObfuscatedNames(packageName);
@@ -82,7 +82,7 @@ public class PackageRenamer {
     private function collectPackages(abc:ABC):void {
         for each (var ns:ABCNamespace in abc.namespace_pool) {
             var packageName:String = ns.name;
-            if (isAllowed(packageName) && ns.kind == ABC.PackageNamespace && packageList.indexOf(packageName) == -1) {
+            if (renameRules.isAllowedPackage(packageName) && ns.kind == ABC.PackageNamespace && packageList.indexOf(packageName) == -1) {
                 packageList.push(packageName);
             }
         }
@@ -93,21 +93,11 @@ public class PackageRenamer {
         trace(this, "renamePackages", packageList.length);
         for each (var ns:ABCNamespace in abc.namespace_pool) {
             var packageName:String = ns.name;
-            if (isAllowed(packageName) && ns.kind == ABC.PackageNamespace && packageList.indexOf(packageName) > -1) {
+            if (renameRules.isAllowedPackage(packageName) && ns.kind == ABC.PackageNamespace && packageList.indexOf(packageName) > -1) {
                 ns.name = renamedPackages.getValue(packageName);
-                trace(packageName + " => " +  ns.name);
+                trace(packageName + " => " + ns.name);
             }
         }
-    }
-
-    private function isAllowed(packageName:String):Boolean {
-        // TODO: validate by RenameActionRule
-        return packageName && packageName != ""
-                && packageName.indexOf("flash.") != 0
-                && packageName.indexOf("flashx.") != 0
-                && packageName.indexOf("mx.") != 0
-                && packageName.indexOf("spark.") != 0
-                && packageName.indexOf("__AS3__.") != 0;
     }
 }
 }
