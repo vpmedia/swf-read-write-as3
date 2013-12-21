@@ -18,7 +18,7 @@
  * =END CLOSED LICENSE
  */
 
-package hu.vpmedia.swf.swfwire.renamers {
+package hu.vpmedia.swf.swfwire {
 import com.swfwire.decompiler.abc.ABCFile;
 
 import hu.vpmedia.collections.HashMap;

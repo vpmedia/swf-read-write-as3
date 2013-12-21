@@ -27,10 +27,6 @@ import hu.vpmedia.swf.swfassist.PackageRenamer;
 import hu.vpmedia.swf.utils.IdGenerator;
 import hu.vpmedia.utils.SWFUtil;
 
-import org.libspark.swfassist.io.ByteArrayOutputStream;
-import org.libspark.swfassist.swf.io.SWFWriter;
-import org.libspark.swfassist.swf.io.WritingContext;
-
 public class SWFObfuscatorZeroImpl implements IBaseSWFObfuscator {
     protected var packageRenamer:PackageRenamer;
     //protected var classRenamer:ClassRenamer;
@@ -78,13 +74,7 @@ public class SWFObfuscatorZeroImpl implements IBaseSWFObfuscator {
      } */
 
     protected function writeSWF():ByteArray {
-        var swfOutputBytes:ByteArray = new ByteArray();
-        var swfOutput:ByteArrayOutputStream = new ByteArrayOutputStream(swfOutputBytes);
-        var swfWriterContext:WritingContext = new WritingContext();
-        var swfWriter:SWFWriter = new SWFWriter();
-        swfWriterContext.length = 999999;
-        swfWriter.writeSWF(swfOutput, swfWriterContext, null /*swfReader.swf.toSWFData(null)*/);
-        return swfOutput.byteArray;
+        return swfReader.swf.toSWFData(null);
     }
 
     protected function writeBackTags(data:ByteArray, orderedList:Array, obfuscationMap:HashMap):void {

@@ -26,7 +26,6 @@ import flash.utils.ByteArray;
 
 import hu.vpmedia.collections.HashMap;
 import hu.vpmedia.swf.core.IBaseSWFObfuscator;
-import hu.vpmedia.swf.swfwire.renamers.PackageRenamer;
 import hu.vpmedia.swf.utils.IdGenerator;
 import hu.vpmedia.utils.SWFUtil;
 
