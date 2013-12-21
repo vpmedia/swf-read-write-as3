@@ -19,6 +19,8 @@
  */
 
 package hu.vpmedia.swf.abstraction {
+import abstraction.swf.SWFWriter;
+
 import flash.utils.ByteArray;
 
 import hu.vpmedia.swf.core.IBaseSWFObfuscator;
@@ -39,7 +41,7 @@ public class SWFObfuscatorAbstractionImpl implements IBaseSWFObfuscator {
         // obfuscate
         packageRenamer.rename(swfReader.swf.swf.abcs);
         // write
-        return data;
+        return new SWFWriter(swfReader.swf.swf).toByteArray();
     }
 }
 }

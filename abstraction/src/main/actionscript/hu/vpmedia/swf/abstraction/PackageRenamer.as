@@ -81,6 +81,7 @@ public class PackageRenamer {
     }
 
     private function collectPackages(abc:ABC):void {
+        trace(this, "collectPackages", abc);
         for each (var ns:ABCNamespace in abc.namespace_pool) {
             var packageName:String = ns.name;
             if (renameRules.isAllowedPackage(packageName) && ns.kind == ABC.PackageNamespace && packageList.indexOf(packageName) == -1) {
@@ -91,7 +92,7 @@ public class PackageRenamer {
     }
 
     private function renamePackages(abc:ABC):void {
-        trace(this, "renamePackages", packageList.length);
+        trace(this, "renamePackages", abc);
         for each (var ns:ABCNamespace in abc.namespace_pool) {
             var packageName:String = ns.name;
             if (renameRules.isAllowedPackage(packageName) && ns.kind == ABC.PackageNamespace && packageList.indexOf(packageName) > -1) {
