@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Parsing swf file:/c:/Work/classes_repo/git-own/swf-parsers-as3/src/main/resources/Main-15.swf -->
+<swf xmlns="http://macromedia/2003/swfx" version="15" framerate="24.0" size="10000x7500" compressed="true" >
+  <!-- framecount=1 length=5340 -->
+  <FileAttributes useDirectBlit="false" useGPU="false" hasMetadata="true" actionScript3="true" suppressCrossDomainCaching="false" swfRelativeUrls="false" useNetwork="true"/>
+  <Metadata>
+        <![CDATA[<?xml version="1.0" ?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <rdf:Description xmlns:dc="http://purl.org/dc/elements/1.1" xmlns:asc="http://ns.adobe.com/asc/2012">
+        <dc:format>application/x-shockwave-flash</dc:format>
+        <asc:compiler name="ActionScript Compiler" version="2.0.0" build="354071"/>
+    </rdf:Description>
+</rdf:RDF>
+]]>
+  </Metadata>
+  <SetBackgroundColor color="#FFFFFF"/>
+  <ScriptLimits scriptRecursionLimit="1000" scriptTimeLimit="60"/>
+  <DoABC name="merged"/>
+  <SymbolClass>
+    <Symbol idref="0" className="Main" />
+  </SymbolClass>
+  <ShowFrame/>
+</swf>
