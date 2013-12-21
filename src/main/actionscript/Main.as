@@ -2,6 +2,8 @@ package {
 import flash.display.MovieClip;
 import flash.utils.ByteArray;
 
+import hu.vpmedia.swf.zero.SWFObfuscatorZeroImpl;
+
 // cannot compile with ASC2
 //import hu.vpmedia.codec.abc.obfuscators.as3commons.SWFObfuscatorAS3CommonsImpl;
 
@@ -27,15 +29,18 @@ public class Main extends MovieClip {
 
     private var swfwire:SWFObfuscatorSWFWireImpl;
 
+    private var zero:SWFObfuscatorZeroImpl;
+
     public function Main() {
         brute = new SWFObfuscatorBruteForceImpl();
         codeazour = new SWFObfuscatorCodeazurImpl();
         eval = new SWFObfuscatorEvalImpl();
         swfassist = new SWFObfuscatorSWFAssistImpl();
         swfwire = new SWFObfuscatorSWFWireImpl();
+        zero = new SWFObfuscatorZeroImpl();
 
-        var bruteForcedBA:ByteArray = brute.obfuscate(swfCloneAsByteArray);
-        //var codeazourBA:ByteArray = codeazour.obfuscate(swfCloneAsByteArray);
+        //var bruteForcedBA:ByteArray = brute.obfuscate(swfCloneAsByteArray);
+        var codeazourBA:ByteArray = codeazour.obfuscate(swfCloneAsByteArray);
         //var evalBA:ByteArray = eval.obfuscate(swfCloneAsByteArray);
         //var swfassistBA:ByteArray = swfassist.obfuscate(swfCloneAsByteArray);
         //var swfwireBA:ByteArray = swfwire.obfuscate(swfCloneAsByteArray);

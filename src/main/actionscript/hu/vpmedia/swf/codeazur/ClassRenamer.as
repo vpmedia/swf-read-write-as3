@@ -18,18 +18,16 @@
  * =END CLOSED LICENSE
  */
 
-package hu.vpmedia.swf.codeazur.renamers {
+package hu.vpmedia.swf.codeazur {
 import com.codeazur.as3abc.ABC;
 import com.codeazur.as3abc.data.NominalType;
 
 import hu.vpmedia.collections.HashMap;
-import hu.vpmedia.swf.codeazur.ClassNameUtil;
-import hu.vpmedia.swf.config.BaseRenameRules;
-import hu.vpmedia.swf.core.renamers.BaseRenamer;
-import hu.vpmedia.swf.core.renamers.ClassHierarchy;
+import hu.vpmedia.swf.core.BaseRenameRules;
+import hu.vpmedia.swf.core.ClassHierarchy;
 import hu.vpmedia.swf.utils.IdGenerator;
 
-public class ClassRenamer extends BaseRenamer {
+public class ClassRenamer {
     private var renameRules:BaseRenameRules;
     private var renamedClasses:HashMap;
     private var classList:Array;

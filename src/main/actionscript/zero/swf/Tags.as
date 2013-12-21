@@ -287,9 +287,10 @@ package zero.swf{
 									lastTag=tagV[tagId];
 								}
 								blockSize=lastTag.bodyOffset+lastTag.bodyLength-tag.headOffset;
+								//此处 length 只用于查看，真正的 length 以 value 的长度为准
 								tagsXML.appendChild(
 									<block
-										length={blockSize}//此处 length 只用于查看，真正的 length 以 value 的长度为准
+										length={blockSize}
 										value={
 											BytesAndStr16.bytes2str16(
 												blockData,

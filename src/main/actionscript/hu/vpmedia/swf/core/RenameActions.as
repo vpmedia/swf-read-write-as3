@@ -17,17 +17,12 @@
  *
  * =END CLOSED LICENSE
  */
-
-package hu.vpmedia.swf.config {
-public class BaseRenameRule {
-    protected var _action:String;
-
-    public function BaseRenameRule() {
-        _action = RenameActions.ALLOW;
+package hu.vpmedia.swf.core {
+public class RenameActions {
+    public function RenameActions() {
     }
 
-    public function isRenameAllowed():Boolean {
-        return _action == RenameActions.ALLOW;
-    }
+    public static const ALLOW:String = "allow";
+    public static const DENY:String = "deny";
 }
 }

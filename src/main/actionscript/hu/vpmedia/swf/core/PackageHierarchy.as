@@ -18,7 +18,7 @@
  * =END CLOSED LICENSE
  */
 
-package hu.vpmedia.swf.core.renamers {
+package hu.vpmedia.swf.core {
 import hu.vpmedia.collections.HashMap;
 import hu.vpmedia.collections.StringIterator;
 

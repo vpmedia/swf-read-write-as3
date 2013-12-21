@@ -22,12 +22,11 @@ package hu.vpmedia.swf.swfwire.renamers {
 import com.swfwire.decompiler.abc.ABCFile;
 
 import hu.vpmedia.collections.HashMap;
-import hu.vpmedia.swf.config.BaseRenameRules;
-import hu.vpmedia.swf.core.renamers.BaseRenamer;
-import hu.vpmedia.swf.core.renamers.PackageHierarchy;
+import hu.vpmedia.swf.core.BaseRenameRules;
+import hu.vpmedia.swf.core.PackageHierarchy;
 import hu.vpmedia.swf.utils.IdGenerator;
 
-public class PackageRenamer extends BaseRenamer {
+public class PackageRenamer {
     private var renameRules:BaseRenameRules;
     private var renamedPackages:HashMap;
     private var packageList:Array;

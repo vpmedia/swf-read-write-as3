@@ -18,9 +18,9 @@
  * =END CLOSED LICENSE
  */
 
-package hu.vpmedia.swf.config {
-public class ClassRenameRules extends BaseRenameRules {
-    public function ClassRenameRules() {
+package hu.vpmedia.swf.core {
+public class PackageRenameRules extends BaseRenameRules {
+    public function PackageRenameRules() {
         super();
     }
 }

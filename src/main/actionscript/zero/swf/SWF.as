@@ -10,8 +10,9 @@ package zero.swf{
 	import flash.utils.ByteArray;
 	import flash.utils.Dictionary;
 	import flash.utils.getDefinitionByName;
-	
-	import zero.codec.LZMAUncompressSWF;
+import flash.utils.getTimer;
+
+import zero.codec.LZMAUncompressSWF;
 	import zero.output;
 	import zero.outputError;
 	

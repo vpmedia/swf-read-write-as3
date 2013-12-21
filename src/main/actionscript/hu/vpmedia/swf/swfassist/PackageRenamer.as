@@ -18,17 +18,15 @@
  * =END CLOSED LICENSE
  */
 
-package hu.vpmedia.swf.codeazur.renamers {
-import com.codeazur.as3abc.ABC;
-import com.codeazur.as3abc.data.ABCNamespace;
-
+package hu.vpmedia.swf.swfassist {
 import hu.vpmedia.collections.HashMap;
-import hu.vpmedia.swf.config.BaseRenameRules;
-import hu.vpmedia.swf.core.renamers.BaseRenamer;
-import hu.vpmedia.swf.core.renamers.PackageHierarchy;
+import hu.vpmedia.swf.core.BaseRenameRules;
+import hu.vpmedia.swf.core.PackageHierarchy;
 import hu.vpmedia.swf.utils.IdGenerator;
 
-public class PackageRenamer extends BaseRenamer {
+import org.libspark.swfassist.swf.tags.DoABC;
+
+public class PackageRenamer {
     private var renameRules:BaseRenameRules;
     private var renamedPackages:HashMap;
     private var packageList:Array;
@@ -37,8 +35,8 @@ public class PackageRenamer extends BaseRenamer {
     public function PackageRenamer() {
     }
 
-    public function rename(abcList:Vector.<ABC>):void {
-        var abc:ABC;
+    public function rename(abcList:Vector.<DoABC>):void {
+        var abc:DoABC;
         // collect
         packageHierarchy = new PackageHierarchy();
         packageList = [];
@@ -79,16 +77,32 @@ public class PackageRenamer extends BaseRenamer {
         }
     }
 
-    private function collectPackages(abc:ABC):void {
+    private function collectPackages(abc:DoABC):void {
         // trace(this, "collectPackages");
-        var packageName:String;
-        for each (var ns:ABCNamespace in abc.constantPool.namespaces) {
-            packageName = ns.name;
-            if (isAllowed(packageName) && isValid(packageName) && ns.kind == ABCNamespace.PACKAGE_NAMESPACE && packageList.indexOf(packageName) == -1) {
-                //trace(ns.name);
-                packageList.push(packageName);
-            }
-        }
+        /*trace("\tNamespaces:");
+         for each (var ns:NamespaceToken in abc.cpool.namespaces)
+         {
+         if(ns.kind == NamespaceToken.KIND_PackageNamespace  && packageList.indexOf(ns.name) == -1)
+         {
+         trace(ns.kind, ns.name);
+         }
+         }*/
+        /*  trace("\tMultinames:");
+         for each (var mn:MultinameToken in abc.cpool.multinames)
+         {
+         trace(mn.kind, mn.data);
+         }*/
+        /* var packageName:String;
+
+         for each (var ns:NamespaceToken in abc.cpool.namespaces)
+         {
+         packageName = ns.name;
+         if(isAllowed(packageName)&& isValid(packageName) && ns.kind == NamespaceToken.KIND_PackageNamespace  && packageList.indexOf(packageName) == -1)
+         {
+         //trace(ns.name);
+         packageList.push(packageName);
+         }
+         }*/
         /*for each (var nt:NominalType in abc.types)
          {
          packageName = nt.name.abcNamespace.name;
@@ -101,19 +115,23 @@ public class PackageRenamer extends BaseRenamer {
         IdGenerator.sortArrayByLength(packageList);
     }
 
-    private function renamePackages(abc:ABC):void {
+    private function renamePackages(abc:DoABC):void {
         trace(this, "renamePackages", packageList.length);
-        var packageName:String;
-        var obfuscatedPackageName:String;
-        for each (var ns:ABCNamespace in abc.constantPool.namespaces) {
-            packageName = ns.name;
-            obfuscatedPackageName = renamedPackages.getValue(packageName);
-            if (isAllowed(packageName) && isValid(packageName) && ns.kind == ABCNamespace.PACKAGE_NAMESPACE && packageList.indexOf(packageName) != -1) {
-                //trace(ns.name);
-                ns.name = obfuscatedPackageName;
-                // trace("\t", packageName, "=>", obfuscatedPackageName);
-            }
-        }
+        /*
+         var packageName:String;
+         var obfuscatedPackageName:String;
+
+         for each (var ns:NamespaceToken in abc.cpool.namespaces)
+         {
+         packageName = ns.name;
+         obfuscatedPackageName = renamedPackages.getValue(packageName);
+         if(isAllowed(packageName) && isValid(packageName) && ns.kind == NamespaceToken.KIND_PackageNamespace && packageList.indexOf(packageName) != -1)
+         {
+         //trace(ns.name);
+         ns.name = obfuscatedPackageName;
+         // trace("\t", packageName, "=>", obfuscatedPackageName);
+         }
+         }*/
         /*for each (var nt:NominalType in abc.types)
          {
          packageName = nt.name.abcNamespace.name;
@@ -132,7 +150,7 @@ public class PackageRenamer extends BaseRenamer {
 
     private function isAllowed(packageName:String):Boolean {
         // TODO: validate by RenameActionRule
-        return packageName.indexOf("flash.") != 0 && packageName.indexOf("flashx.") != 0 && packageName.indexOf("mx.") != 0 && packageName.indexOf("spark.") != 0 && packageName.indexOf("__AS3__.") != 0;
+        return packageName.indexOf("flash.") != 0 && packageName.indexOf("mx.") != 0 && packageName.indexOf("spark.") != 0;
     }
 
     public function getObfuscatedName(packageName:String):String {

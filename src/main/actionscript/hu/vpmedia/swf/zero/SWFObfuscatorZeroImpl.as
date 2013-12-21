@@ -18,30 +18,27 @@
  * =END CLOSED LICENSE
  */
 
-package hu.vpmedia.swf.swfassist {
+package hu.vpmedia.swf.zero {
 import flash.utils.ByteArray;
 
 import hu.vpmedia.collections.HashMap;
 import hu.vpmedia.swf.core.IBaseSWFObfuscator;
+import hu.vpmedia.swf.swfassist.PackageRenamer;
 import hu.vpmedia.swf.utils.IdGenerator;
 import hu.vpmedia.utils.SWFUtil;
 
-import org.libspark.swfassist.inprogress.swf.ABCInfoPrinter;
 import org.libspark.swfassist.io.ByteArrayOutputStream;
-import org.libspark.swfassist.swf.abc.io.ABCPrintingContext;
-import org.libspark.swfassist.swf.abc.modifiers.ABCPatcher;
-import org.libspark.swfassist.swf.abc.validators.ABCSecurityValidator;
 import org.libspark.swfassist.swf.io.SWFWriter;
 import org.libspark.swfassist.swf.io.WritingContext;
 
-public class SWFObfuscatorSWFAssistImpl implements IBaseSWFObfuscator {
+public class SWFObfuscatorZeroImpl implements IBaseSWFObfuscator {
     protected var packageRenamer:PackageRenamer;
     //protected var classRenamer:ClassRenamer;
     // protected var memberRenamer:MemberRenamer;
-    protected var swfReader:SWFAssistReader;
+    protected var swfReader:ZeroReader;
 
-    public function SWFObfuscatorSWFAssistImpl() {
-        swfReader = new SWFAssistReader();
+    public function SWFObfuscatorZeroImpl() {
+        swfReader = new ZeroReader();
         packageRenamer = new PackageRenamer();
         //  classRenamer = new ClassRenamer();
         //  memberRenamer = new MemberRenamer();
@@ -54,7 +51,7 @@ public class SWFObfuscatorSWFAssistImpl implements IBaseSWFObfuscator {
         var resultBA:ByteArray = SWFUtil.decompress(data);
         swfReader.parse(resultBA);
         // Rename packages
-        packageRenamer.rename(swfReader.abcList);
+        //packageRenamer.rename(swfReader.abcList);
         // writeBackTags(resultBA, packageRenamer.packages, packageRenamer.obfuscationMap);
         // Rename classes
         // classRenamer.rename(swfReader.abcList);
@@ -65,20 +62,20 @@ public class SWFObfuscatorSWFAssistImpl implements IBaseSWFObfuscator {
         return SWFUtil.compress(writeSWF());
     }
 
-    private function processABCTags():void {
-        var validator:ABCSecurityValidator = new ABCSecurityValidator();
-        var patcher:ABCPatcher = new ABCPatcher(validator, 0, 0, printTags);
-        swfReader.swf.visit(patcher);
-    }
+    /* private function processABCTags():void {
+     var validator:ABCSecurityValidator = new ABCSecurityValidator();
+     var patcher:ABCPatcher = new ABCPatcher(validator, 0, 0, printTags);
+     swfReader.swf.visit(patcher);
+     }*/
 
-    private function printTags():void {
-        // Trace out the patched file ( call writeSWF() to write to a file )
-        var printerContext:ABCPrintingContext = new ABCPrintingContext();
-        printerContext.methodLimit = 0;
-        printerContext.readMethodCode = false;
-        var printer:ABCInfoPrinter = new ABCInfoPrinter(printerContext, 0);
-        swfReader.swf.visit(printer);
-    }
+    /*private function printTags():void {
+     // Trace out the patched file ( call writeSWF() to write to a file )
+     var printerContext:ABCPrintingContext = new ABCPrintingContext();
+     printerContext.methodLimit = 0;
+     printerContext.readMethodCode = false;
+     var printer:ABCInfoPrinter = new ABCInfoPrinter(printerContext, 0);
+     swfReader.swf.visit(printer);
+     } */
 
     protected function writeSWF():ByteArray {
         var swfOutputBytes:ByteArray = new ByteArray();
@@ -86,7 +83,7 @@ public class SWFObfuscatorSWFAssistImpl implements IBaseSWFObfuscator {
         var swfWriterContext:WritingContext = new WritingContext();
         var swfWriter:SWFWriter = new SWFWriter();
         swfWriterContext.length = 999999;
-        swfWriter.writeSWF(swfOutput, swfWriterContext, swfReader.swf);
+        swfWriter.writeSWF(swfOutput, swfWriterContext, null /*swfReader.swf.toSWFData(null)*/);
         return swfOutput.byteArray;
     }
 

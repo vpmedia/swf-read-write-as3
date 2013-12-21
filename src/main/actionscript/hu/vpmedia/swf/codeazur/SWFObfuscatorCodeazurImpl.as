@@ -23,9 +23,6 @@ import com.codeazur.as3swf.SWFData;
 
 import flash.utils.ByteArray;
 
-import hu.vpmedia.swf.codeazur.renamers.ClassRenamer;
-import hu.vpmedia.swf.codeazur.renamers.MemberRenamer;
-import hu.vpmedia.swf.codeazur.renamers.PackageRenamer;
 import hu.vpmedia.swf.core.IBaseSWFObfuscator;
 
 public class SWFObfuscatorCodeazurImpl implements IBaseSWFObfuscator {
@@ -51,6 +48,7 @@ public class SWFObfuscatorCodeazurImpl implements IBaseSWFObfuscator {
     }
 
     private function processTags():void {
+        trace(this, "procressTags");
         packageRenamer.rename(swfReader.abcList);
         classRenamer.rename(swfReader.abcList);
         memberRenamer.rename(swfReader.abcList);

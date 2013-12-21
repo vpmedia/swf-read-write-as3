@@ -18,30 +18,16 @@
  * =END CLOSED LICENSE
  */
 
-package hu.vpmedia.swf.config {
-public class BaseRenameRules {
-    protected var _action:String;
-    protected var _rules:Array;
+package hu.vpmedia.swf.codeazur {
+import com.codeazur.as3abc.ABC;
+import com.codeazur.as3swf.tags.TagDoABC;
 
-    public function BaseRenameRules() {
-        _action = RenameActions.ALLOW;
-        _rules = [];
+public class MemberRenamer {
+    public function MemberRenamer() {
     }
 
-    public function getAction():String {
-        return _action;
-    }
-
-    public function setAction(value:String):void {
-        _action = value;
-    }
-
-    public function addRule(value:BaseRenameRule):void {
-        _rules.push(value);
-    }
-
-    public function allowRename(id:String):Boolean {
-        return BaseRenameRule(_rules[id]).isRenameAllowed();
+    public function rename(abcList:Vector.<ABC>):void {
+        var tag:TagDoABC;
     }
 }
 }
