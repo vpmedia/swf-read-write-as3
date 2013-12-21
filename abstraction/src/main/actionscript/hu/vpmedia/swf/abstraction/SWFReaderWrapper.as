@@ -36,7 +36,7 @@ public class SWFReaderWrapper {
     public function parse(data:ByteArray):void {
         abcTagList = new Vector.<DoABC2Tag>();
         swf = new SWFReader(data);
-        trace(this, "parse", swf);
+        trace(this, "parse", swf.swf);
         for each(var t:Tag in swf.swf.tags) {
             if (t is DoABC2Tag) {
                 var abct:DoABC2Tag = t as DoABC2Tag
