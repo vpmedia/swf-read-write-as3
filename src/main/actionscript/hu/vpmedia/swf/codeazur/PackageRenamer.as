@@ -24,8 +24,8 @@ import com.codeazur.as3abc.data.ABCNamespace;
 
 import hu.vpmedia.collections.HashMap;
 import hu.vpmedia.swf.core.BaseRenameRules;
+import hu.vpmedia.swf.core.IdGenerator;
 import hu.vpmedia.swf.core.PackageHierarchy;
-import hu.vpmedia.swf.utils.IdGenerator;
 
 public class PackageRenamer {
     private var renameRules:BaseRenameRules;

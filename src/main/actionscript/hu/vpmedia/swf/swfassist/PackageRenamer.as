@@ -21,8 +21,8 @@
 package hu.vpmedia.swf.swfassist {
 import hu.vpmedia.collections.HashMap;
 import hu.vpmedia.swf.core.BaseRenameRules;
+import hu.vpmedia.swf.core.IdGenerator;
 import hu.vpmedia.swf.core.PackageHierarchy;
-import hu.vpmedia.swf.utils.IdGenerator;
 
 import org.libspark.swfassist.swf.tags.DoABC;
 

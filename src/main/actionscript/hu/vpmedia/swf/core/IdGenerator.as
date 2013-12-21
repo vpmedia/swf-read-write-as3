@@ -18,7 +18,7 @@
  * =END CLOSED LICENSE
  */
 
-package hu.vpmedia.swf.utils {
+package hu.vpmedia.swf.core {
 import flash.utils.ByteArray;
 
 public class IdGenerator {

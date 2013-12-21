@@ -27,7 +27,7 @@ import hu.vpmedia.swf.codeazur.MemberRenamer;
 import hu.vpmedia.swf.codeazur.PackageRenamer;
 import hu.vpmedia.swf.codeazur.SWFCodeazurReader;
 import hu.vpmedia.swf.core.IBaseSWFObfuscator;
-import hu.vpmedia.swf.utils.IdGenerator;
+import hu.vpmedia.swf.core.IdGenerator;
 import hu.vpmedia.utils.SWFUtil;
 
 public class SWFObfuscatorBruteForceImpl implements IBaseSWFObfuscator {

@@ -25,7 +25,7 @@ import com.codeazur.as3abc.data.NominalType;
 import hu.vpmedia.collections.HashMap;
 import hu.vpmedia.swf.core.BaseRenameRules;
 import hu.vpmedia.swf.core.ClassHierarchy;
-import hu.vpmedia.swf.utils.IdGenerator;
+import hu.vpmedia.swf.core.IdGenerator;
 
 public class ClassRenamer {
     private var renameRules:BaseRenameRules;

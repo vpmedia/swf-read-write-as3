@@ -23,8 +23,8 @@ import flash.utils.ByteArray;
 
 import hu.vpmedia.collections.HashMap;
 import hu.vpmedia.swf.core.IBaseSWFObfuscator;
+import hu.vpmedia.swf.core.IdGenerator;
 import hu.vpmedia.swf.swfassist.PackageRenamer;
-import hu.vpmedia.swf.utils.IdGenerator;
 import hu.vpmedia.utils.SWFUtil;
 
 public class SWFObfuscatorZeroImpl implements IBaseSWFObfuscator {
