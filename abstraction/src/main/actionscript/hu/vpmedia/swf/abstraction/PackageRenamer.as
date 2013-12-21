@@ -40,6 +40,7 @@ public class PackageRenamer {
         trace(this, "rename", abcList);
         var abc:ABC;
         // collect
+        renameRules = new BaseRenameRules();
         packageHierarchy = new PackageHierarchy();
         packageList = [];
         for each (abc in abcList) {

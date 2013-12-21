@@ -39,6 +39,7 @@ public class ClassRenamer {
     public function rename(abcList:Vector.<ABC>):void {
         var abc:ABC;
         // collect
+        renameRules = new BaseRenameRules();
         classHierarchy = new ClassHierarchy();
         classList = [];
         for each (abc in abcList) {

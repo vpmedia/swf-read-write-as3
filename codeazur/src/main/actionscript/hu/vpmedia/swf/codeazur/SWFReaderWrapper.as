@@ -34,7 +34,7 @@ public class SWFReaderWrapper {
     public var swf:SWF;
     public var abcList:Vector.<ABC>;
     public var abcTagMap:HashMap;
-    public var symbolTagList:Vector.<TagSymbolClass>;
+    //public var symbolTagList:Vector.<TagSymbolClass>;
 
     public function SWFReaderWrapper() {
     }
@@ -42,38 +42,33 @@ public class SWFReaderWrapper {
     public function parse(data:ByteArray):void {
         abcList = new Vector.<ABC>();
         abcTagMap = new HashMap(false);
-        symbolTagList = new Vector.<TagSymbolClass>();
+        //symbolTagList = new Vector.<TagSymbolClass>();
         swf = new SWF(data);
         //trace(swf);
         processTags();
     }
 
     protected function processTags():void {
-        var tags:Vector.<ITag> = swf.tags;
-        var n:int = swf.tags.length;
-        var i:int;
-        for (i = 0; i < n; i++) {
-            var t:ITag = tags[i];
-            read(t);
-        }
-    }
-
-    private function read(t:ITag):void {
-        switch (t.type) {
-            case TagSymbolClass.TYPE:
-                var symbolTag:TagSymbolClass = TagSymbolClass(t);
-                symbolTagList.push(symbolTag);
-                break;
-            case TagDoABC.TYPE:
-                var abcTag:TagDoABC = TagDoABC(t);
-                var abc:ABC = new ABC(abcTag.bytes);
-                // abcTagList.push(abcTag);
-                abcList.push(abc);
-                abcTagMap.put(abc, abcTag);
-                break;
-            case TagFileAttributes.TYPE:
-                var fileAttribTag:TagFileAttributes = TagFileAttributes(t);
-                break;
+        const tags:Vector.<ITag> = swf.tags;
+        const n:int = swf.tags.length;
+        for (var i:int = 0; i < n; i++) {
+            const t:ITag = tags[i];
+            switch (t.type) {
+                case TagSymbolClass.TYPE:
+                    const symbolTag:TagSymbolClass = TagSymbolClass(t);
+                    //symbolTagList.push(symbolTag);
+                    break;
+                case TagDoABC.TYPE:
+                    const abcTag:TagDoABC = TagDoABC(t);
+                    const abc:ABC = new ABC(abcTag.bytes);
+                    // abcTagList.push(abcTag);
+                    abcList.push(abc);
+                    abcTagMap.put(abc, abcTag);
+                    break;
+                case TagFileAttributes.TYPE:
+                    const fileAttribTag:TagFileAttributes = TagFileAttributes(t);
+                    break;
+            }
         }
     }
 }

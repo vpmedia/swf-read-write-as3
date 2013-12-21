@@ -41,26 +41,13 @@ public class SWFObfuscatorCodeazurImpl implements IBaseSWFObfuscator {
 
     public function obfuscate(data:ByteArray):ByteArray {
         trace(this, "obfuscate");
+        // read
         swfReader.parse(data);
-        processTags();
-        var swfData:SWFData = writeBackTags()
-        return swfData;
-    }
-
-    private function processTags():void {
-        trace(this, "procressTags");
+        // modify
         packageRenamer.rename(swfReader.abcList);
         classRenamer.rename(swfReader.abcList);
         memberRenamer.rename(swfReader.abcList);
-    }
-
-    private function writeBackTags():SWFData {
-        /*for (var i:int = 0; i < swfReader.abcList.length; i++)
-         {
-         var abc:ABC = ABC(swfReader.abcList[i]);
-         var abcTag:TagDoABC = TagDoABC(swfReader.abcTagMap.getValue(abc));
-         //trace(i,abc,abcTag);
-         }*/
+        // write
         var result:SWFData = new SWFData();
         swfReader.swf.publish(result);
         return result;

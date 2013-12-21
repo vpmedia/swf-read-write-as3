@@ -38,6 +38,7 @@ public class PackageRenamer {
     public function rename(abcList:Vector.<DoABC>):void {
         var abc:DoABC;
         // collect
+        renameRules = new BaseRenameRules();
         packageHierarchy = new PackageHierarchy();
         packageList = [];
         for each (abc in abcList) {

@@ -40,6 +40,7 @@ public class PackageRenamer {
     public function rename(abcList:Vector.<ABCFile>):void {
         var abc:ABCFile;
         // collect
+        renameRules = new BaseRenameRules();
         packageHierarchy = new PackageHierarchy();
         packageList = [];
         for each (abc in abcList) {

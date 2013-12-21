@@ -27,31 +27,24 @@ import flash.utils.ByteArray;
 import hu.vpmedia.swf.core.IBaseSWFObfuscator;
 
 public class SWFObfuscatorSWFWireImpl implements IBaseSWFObfuscator {
-    protected var packageRenamer:PackageRenamer;
-    //protected var classRenamer:ClassRenamer;
-    // protected var memberRenamer:MemberRenamer;
-    protected var swfReader:SWFReaderWrapper;
+    private var packageRenamer:PackageRenamer;
+    private var swfReader:SWFReaderWrapper;
 
     public function SWFObfuscatorSWFWireImpl() {
         swfReader = new SWFReaderWrapper();
         packageRenamer = new PackageRenamer();
-        //  classRenamer = new ClassRenamer();
-        //  memberRenamer = new MemberRenamer();
     }
 
     public function obfuscate(data:ByteArray):ByteArray {
         trace(this, "obfuscate");
+        // read
         swfReader.parse(data);
-        // Rename packages
+        // obfuscate
         packageRenamer.rename(swfReader.abcList);
-        // Rename classes
-        // classRenamer.rename(swfReader.abcList);
-        // Rename members
-        // memberRenamer.rename(swfReader.abcList);
+        // write
         var swfWriter:SWF10Writer = new SWF10Writer();
         var swfWriteResult:SWFWriteResult = swfWriter.write(swfReader.swf);
         trace(swfWriteResult.warnings);
-        // Pass back uncompressed
         return swfWriteResult.bytes;
     }
 }

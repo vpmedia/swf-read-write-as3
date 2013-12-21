@@ -36,17 +36,11 @@ public class PackageRenamer {
     public function PackageRenamer() {
     }
 
-    public function getPackageList():Array {
-        return packageList;
-    }
-
-    public function getPackageMap():HashMap {
-        return renamedPackages;
-    }
 
     public function rename(abcList:Vector.<ABC>):void {
         var abc:ABC;
         // collect
+        renameRules = new BaseRenameRules();
         packageHierarchy = new PackageHierarchy();
         packageList = [];
         for each (abc in abcList) {
@@ -109,6 +103,14 @@ public class PackageRenamer {
                 trace(packageName, "=>", ns.name);
             }
         }
+    }
+
+    public function getPackageList():Array {
+        return packageList;
+    }
+
+    public function getPackageMap():HashMap {
+        return renamedPackages;
     }
 }
 }

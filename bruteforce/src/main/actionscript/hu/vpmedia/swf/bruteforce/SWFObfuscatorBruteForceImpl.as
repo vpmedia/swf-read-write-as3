@@ -44,15 +44,14 @@ public class SWFObfuscatorBruteForceImpl implements IBaseSWFObfuscator {
 
     public function obfuscate(data:ByteArray):ByteArray {
         trace(this, "obfuscate");
+        // read
         swfReader.parse(data);
-        // Rename packages
+        // obfuscate
         packageRenamer.rename(swfReader.abcList);
         writeBackTags(data, packageRenamer.getPackageList(), packageRenamer.getPackageMap());
-        // Rename classes
         classRenamer.rename(swfReader.abcList);
-        // Rename members
         memberRenamer.rename(swfReader.abcList);
-        // Compress and pass back
+        // write
         return data;
     }
 

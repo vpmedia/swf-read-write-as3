@@ -28,33 +28,21 @@ import org.libspark.swfassist.swf.io.SWFWriter;
 import org.libspark.swfassist.swf.io.WritingContext;
 
 public class SWFObfuscatorSWFAssistImpl implements IBaseSWFObfuscator {
-    protected var packageRenamer:PackageRenamer;
-    //protected var classRenamer:ClassRenamer;
-    // protected var memberRenamer:MemberRenamer;
-    protected var swfReader:SWFReaderWrapper;
+    private var packageRenamer:PackageRenamer;
+    private var swfReader:SWFReaderWrapper;
 
     public function SWFObfuscatorSWFAssistImpl() {
         swfReader = new SWFReaderWrapper();
         packageRenamer = new PackageRenamer();
-        //  classRenamer = new ClassRenamer();
-        //  memberRenamer = new MemberRenamer();
     }
 
     public function obfuscate(data:ByteArray):ByteArray {
         trace(this, "obfuscate");
+        // read
         swfReader.parse(data);
-        // Rename packages
+        // obfuscate
         packageRenamer.rename(swfReader.abcList);
-        // Rename classes
-        // classRenamer.rename(swfReader.abcList);
-        // Rename members
-        // memberRenamer.rename(swfReader.abcList);
-        //processABCTags();
-        // Compress and pass back
-        return writeSWF();
-    }
-
-    protected function writeSWF():ByteArray {
+        // write
         var swfOutputBytes:ByteArray = new ByteArray();
         var swfOutput:ByteArrayOutputStream = new ByteArrayOutputStream(swfOutputBytes);
         var swfWriterContext:WritingContext = new WritingContext();
