@@ -40,7 +40,6 @@ public class SWFObfuscatorEvalImpl implements IBaseSWFObfuscator {
 
     public function obfuscate(data:ByteArray):ByteArray {
         trace(this, "obfuscate");
-        var resultBA:ByteArray = SWFUtil.decompress(data);
         swfReader.parse(data);
         var a:Array = swfReader.abcTagMap.getValues();
         var n:int = a.length;
@@ -50,7 +49,7 @@ public class SWFObfuscatorEvalImpl implements IBaseSWFObfuscator {
             trace(ABCDump.dump(bs.getBytes()));
         }
         processTags();
-        return SWFUtil.compress(resultBA);
+        return data;
     }
 
     private function processTags():void {

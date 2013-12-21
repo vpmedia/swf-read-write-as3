@@ -49,10 +49,7 @@ public class SWFObfuscatorSWFAssistImpl implements IBaseSWFObfuscator {
 
     public function obfuscate(data:ByteArray):ByteArray {
         trace(this, "obfuscate");
-        // Decompress is neccessary
-        //var resultBA:ByteArray = swfReader.compressed ? SWFCompressor.decompress (data) : data;
-        var resultBA:ByteArray = SWFUtil.decompress(data);
-        swfReader.parse(resultBA);
+        swfReader.parse(data);
         // Rename packages
         packageRenamer.rename(swfReader.abcList);
         // writeBackTags(resultBA, packageRenamer.packages, packageRenamer.obfuscationMap);
@@ -62,7 +59,7 @@ public class SWFObfuscatorSWFAssistImpl implements IBaseSWFObfuscator {
         // memberRenamer.rename(swfReader.abcList);
         //processABCTags();
         // Compress and pass back
-        return SWFUtil.compress(writeSWF());
+        return writeSWF();
     }
 
     private function processABCTags():void {

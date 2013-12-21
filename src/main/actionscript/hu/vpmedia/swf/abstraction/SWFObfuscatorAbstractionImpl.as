@@ -41,55 +41,15 @@ public class SWFObfuscatorAbstractionImpl implements IBaseSWFObfuscator {
 
     public function obfuscate(data:ByteArray):ByteArray {
         trace(this, "obfuscate");
-        // Decompress is neccessary
-        //var resultBA:ByteArray = swfReader.compressed ? SWFCompressor.decompress (data) : data;
-        var resultBA:ByteArray = SWFUtil.decompress(data);
-        swfReader.parse(resultBA);
+        swfReader.parse(data);
         // Rename packages
         packageRenamer.rename(swfReader.swf.swf.abcs);
-        // writeBackTags(resultBA, packageRenamer.packages, packageRenamer.obfuscationMap);
         // Rename classes
         // classRenamer.rename(swfReader.abcList);
         // Rename members
         // memberRenamer.rename(swfReader.abcList);
-        //processABCTags();
-        // Compress and pass back
-        return SWFUtil.compress(resultBA);
-    }
-
-    /* private function processABCTags():void {
-     var validator:ABCSecurityValidator = new ABCSecurityValidator();
-     var patcher:ABCPatcher = new ABCPatcher(validator, 0, 0, printTags);
-     swfReader.swf.visit(patcher);
-     }*/
-
-    /*private function printTags():void {
-     // Trace out the patched file ( call writeSWF() to write to a file )
-     var printerContext:ABCPrintingContext = new ABCPrintingContext();
-     printerContext.methodLimit = 0;
-     printerContext.readMethodCode = false;
-     var printer:ABCInfoPrinter = new ABCInfoPrinter(printerContext, 0);
-     swfReader.swf.visit(printer);
-     } */
-
-    protected function writeSWF():ByteArray {
-        return null;
-    }
-
-    protected function writeBackTags(data:ByteArray, orderedList:Array, obfuscationMap:HashMap):void {
-        // obfuscate
-        var i:int;
-        while (orderedList.length > 0) {
-            var originalName:String = orderedList.shift();
-            var renamedName:String = obfuscationMap.getValue(originalName);
-            trace("\t", "=>", originalName, renamedName);
-            data.position = 0;
-            while (IdGenerator.findString(data, originalName)) {
-                for (i = 0; i < renamedName.length; i++) {
-                    data.writeByte(renamedName.charCodeAt(i));
-                }
-            }
-        }
+        // pass back
+        return data;
     }
 }
 }

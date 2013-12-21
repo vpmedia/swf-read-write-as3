@@ -111,7 +111,7 @@ public class Instruction {
                         return -arg_count
                         break
                     case Multiname.RTQName:
-                    case Multiname.Multiname:
+                    case Multiname.MultinameN:
                         return -(arg_count + 1)
                         break
                     case Multiname.RTQNameL:
@@ -131,7 +131,7 @@ public class Instruction {
                         return -(arg_count + 1)
                         break
                     case Multiname.RTQName:
-                    case Multiname.Multiname:
+                    case Multiname.MultinameN:
                         return -(arg_count + 2)
                         break
                     case Multiname.RTQNameL:
@@ -158,7 +158,7 @@ public class Instruction {
                         return 0
                         break
                     case Multiname.RTQName:
-                    case Multiname.Multiname:
+                    case Multiname.MultinameN:
                         return -1
                         break
                     case Multiname.RTQNameL:
@@ -177,7 +177,7 @@ public class Instruction {
                         return 1
                         break
                     case Multiname.RTQName:
-                    case Multiname.Multiname:
+                    case Multiname.MultinameN:
                         return 0
                         break
                     case Multiname.RTQNameL:
@@ -197,7 +197,7 @@ public class Instruction {
                         return -2
                         break
                     case Multiname.RTQName:
-                    case Multiname.Multiname:
+                    case Multiname.MultinameN:
                         return -3
                         break
                     case Multiname.RTQNameL:

@@ -21,7 +21,7 @@ import hu.vpmedia.utils.SWFUtil;
 public class Main extends MovieClip {
 
     // TEST ASSET
-    [Embed(source="/../resources/Main-20.swf", mimeType="application/octet-stream")]
+    [Embed(source="/../resources/Main-22.swf", mimeType="application/octet-stream")]
     private var symbolClass:Class;
 
     /* BRUTE obfuscator */
@@ -62,34 +62,36 @@ public class Main extends MovieClip {
         swfassist = new SWFObfuscatorSWFAssistImpl();
 
         trace("#### BRUTE FORCE ####");
-        var bruteForcedBA:ByteArray = brute.obfuscate(swfCloneAsByteArray);
+        var bruteForcedBA:ByteArray = brute.obfuscate(decompressedSWF);
         trace("");
         trace("#### ABSTRACTION ####");
-        var abstractionBA:ByteArray = abstraction.obfuscate(swfCloneAsByteArray);
+        var abstractionBA:ByteArray = abstraction.obfuscate(decompressedSWF);
         trace("");
         trace("#### ZERO ####");
-        var zeroBA:ByteArray = zero.obfuscate(swfCloneAsByteArray);
+        var zeroBA:ByteArray = zero.obfuscate(decompressedSWF);
         trace("");
         trace("#### CODEAZUR ####");
-        var codeazurBA:ByteArray = codeazur.obfuscate(swfCloneAsByteArray);
+        var codeazurBA:ByteArray = codeazur.obfuscate(decompressedSWF);
         trace("");
         trace("#### SWF WIRE ####");
-        var swfwireBA:ByteArray = swfwire.obfuscate(swfCloneAsByteArray);
+        var swfwireBA:ByteArray = swfwire.obfuscate(decompressedSWF);
         trace("");
         trace("#### SWF ASSIST ####");
-        //var swfassistBA:ByteArray = swfassist.obfuscate(swfCloneAsByteArray);
+        //var swfassistBA:ByteArray = swfassist.obfuscate(decompressedSwfCloneAsBA);
         trace("");
         trace("#### EVAL ####");
-        //var evalBA:ByteArray = eval.obfuscate(swfCloneAsByteArray);
-
+        //var evalBA:ByteArray = eval.obfuscate(decompressedSwfCloneAsBA);
     }
 
-    private function get swfCloneAsByteArray():ByteArray {
-        return SWFUtil.clone(new symbolClass());
+    private function get compressedSWF():ByteArray {
+        const result:ByteArray = SWFUtil.clone(new symbolClass());
+        result.position = 0;
+        return result;
     }
 
-    private function get decompressedSwfCloneAsByteArray():ByteArray {
-        return SWFUtil.decompress(SWFUtil.clone(new symbolClass()));
+    private function get decompressedSWF():ByteArray {
+        const result:ByteArray = SWFUtil.decompress(compressedSWF);
+        return result;
     }
 }
 }

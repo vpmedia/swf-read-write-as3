@@ -42,9 +42,10 @@ public class SWFReaderWrapper {
                 var abct:DoABC2Tag = t as DoABC2Tag
                 abcTagList.push(abct);
                 var inspector:ABCInspector = new ABCInspector(abct.getABC());
-                trace(inspector.inspect)
+                //trace(inspector.inspect)
             }
         }
+        trace("Number of found ABC Tags: " + abcTagList.length);
     }
 }
 }

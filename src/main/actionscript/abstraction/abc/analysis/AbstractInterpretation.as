@@ -958,7 +958,7 @@ public class AbstractInterpretation {
     private static function applyMultiname(stack:Vector.<Object>, mn:Multiname):* {
         switch (mn.kind) {
             case Multiname.QName:
-            case Multiname.Multiname:
+            case Multiname.MultinameN:
             case Multiname.MultinameA:
                 return []
                 break

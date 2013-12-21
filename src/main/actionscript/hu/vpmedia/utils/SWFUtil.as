@@ -62,9 +62,13 @@ public class SWFUtil {
         data.position = 0;
         var compressionType:String = data.readMultiByte(3, "us-ascii"); // CWS, ZWS
         data.position = 0;
-        trace("SWFUtil::decompress: " + compressionType)
-        if (compressionType == LZMA_FLAG) {
-            return LZMAUncompressSWF(data);
+        trace("SWFUtil::decompress: " + compressionType);
+        if (compressionType == DECOMPRESSED_FLAG) {
+            return data;
+        } else if (compressionType == LZMA_FLAG) {
+            const uncompressedLZMA:ByteArray = LZMAUncompressSWF(data);
+            uncompressedLZMA.position = 0;
+            return uncompressedLZMA;
         }
         // Deflate
         var header:ByteArray = new ByteArray;

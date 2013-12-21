@@ -266,7 +266,7 @@ public class ABCReader {
                         multiname = new Multiname(multiname_kind)
                         break
 
-                    case Multiname.Multiname:
+                    case Multiname.MultinameN:
                     case Multiname.MultinameA:
                         multiname = new Multiname(multiname_kind, string_pool[readU30()], ns_set_pool[readU30()])
                         break
@@ -292,7 +292,7 @@ public class ABCReader {
                 multiname_pool[i] = multiname
             }
         } else {
-            multiname_pool = _abc.multiname_pool = [new Multiname(Multiname.Multiname, '~any~', ns_set_pool[0])]
+            multiname_pool = _abc.multiname_pool = [new Multiname(Multiname.MultinameN, '~any~', ns_set_pool[0])]
         }
     }
 

@@ -7,7 +7,7 @@ public class Multiname {
             RTQNameA:int = 0x10,
             RTQNameL:int = 0x11,
             RTQNameLA:int = 0x12,
-            Multiname:int = 0x09,
+            MultinameN:int = 0x09,
             MultinameA:int = 0x0e,
             MultinameL:int = 0x1b,
             MultinameLA:int = 0x1c,
@@ -15,20 +15,20 @@ public class Multiname {
     // named by abcdump constant
             TypeName:int = 0x1d  // not in avm2overview
 
-    public static var Any:abstraction.abc.Multiname = new abstraction.abc.Multiname(abstraction.abc.Multiname.QName, ABCNamespace.public_ns, '')
+    public static var Any:Multiname = new Multiname(Multiname.QName, ABCNamespace.public_ns, '')
 
     private static var kindMap:Array = []
     kindMap[QName] = 'QName', kindMap[QNameA] = 'QNameA'
     kindMap[RTQName] = 'RTQName', kindMap[RTQNameA] = 'RTQNameA'
     kindMap[RTQNameL] = 'RTQNameL', kindMap[RTQNameLA] = 'RTQNameLA'
-    kindMap[abstraction.abc.Multiname.Multiname] = 'Multiname', kindMap[MultinameA] = 'MultinameA'
+    kindMap[Multiname.MultinameN] = 'Multiname', kindMap[MultinameA] = 'MultinameA'
     kindMap[MultinameL] = 'MultinameL', kindMap[MultinameLA] = 'MultinameLA'
 
     public var kind:int
     public var ns:ABCNamespace
     public var name:*
     public var nsSet:Array
-    public var typeName:abstraction.abc.Multiname
+    public var typeName:Multiname
     public var params:Array
 
     public function Multiname(kind:int, arg1:* = null, arg2:* = null) {
@@ -50,7 +50,7 @@ public class Multiname {
                 // no data
                 break
 
-            case abstraction.abc.Multiname.Multiname:
+            case Multiname.MultinameN:
             case MultinameA:
                 name = arg1
                 nsSet = arg2
@@ -72,7 +72,7 @@ public class Multiname {
         }
     }
 
-    public function eq(mn:abstraction.abc.Multiname):Boolean {
+    public function eq(mn:Multiname):Boolean {
         if (mn.kind == kind) {
             if (mn.kind == QName) {
                 if (mn.ns.kind == ns.kind && mn.ns.name == ns.name && mn.name == name) {
@@ -94,9 +94,9 @@ public class Multiname {
             return ns.toString() + '::' + name
         } else if (kind == TypeName) {
             return typeName + '.<' + params.join(', ') + '>'
-        } else if (kind == abstraction.abc.Multiname.Multiname) {
+        } else if (kind == Multiname.MultinameN) {
             return '[' + nsSet.join(', ') + ']::' + name
-        } else if (kind == abstraction.abc.Multiname.MultinameL) {
+        } else if (kind == Multiname.MultinameL) {
             return '[' + nsSet.join(', ') + ']::[*late*]'
         }
         return '[Multiname ' + kindMap[kind] + ']'

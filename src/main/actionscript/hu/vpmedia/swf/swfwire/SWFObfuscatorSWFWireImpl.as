@@ -44,10 +44,7 @@ public class SWFObfuscatorSWFWireImpl implements IBaseSWFObfuscator {
 
     public function obfuscate(data:ByteArray):ByteArray {
         trace(this, "obfuscate");
-        // Decompress is neccessary
-        //var resultBA:ByteArray = swfReader.compressed ? SWFCompressor.decompress (data) : data;
-        var resultBA:ByteArray = SWFUtil.decompress(data);
-        swfReader.parse(resultBA);
+        swfReader.parse(data);
         // Rename packages
         packageRenamer.rename(swfReader.abcList);
         // writeBackTags(resultBA, packageRenamer.packages, packageRenamer.obfuscationMap);
@@ -58,8 +55,8 @@ public class SWFObfuscatorSWFWireImpl implements IBaseSWFObfuscator {
         var swfWriter:SWF10Writer = new SWF10Writer();
         var swfWriteResult:SWFWriteResult = swfWriter.write(swfReader.swf);
         trace(swfWriteResult.warnings);
-        // Compress and pass back
-        return SWFUtil.compress(swfWriteResult.bytes);
+        // Pass back uncompressed
+        return swfWriteResult.bytes;
     }
 
     protected function writeBackTags(data:ByteArray, orderedList:Array, obfuscationMap:HashMap):void {

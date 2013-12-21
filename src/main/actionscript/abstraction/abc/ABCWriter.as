@@ -652,7 +652,7 @@ public class ABCWriter {
                         // nothing
                         break
 
-                    case Multiname.Multiname:
+                    case Multiname.MultinameN:
                     case Multiname.MultinameA:
                         _writeU30(_spi(m.name))
                         _writeU30(_abc.ns_set_pool.indexOf(m.nsSet))
