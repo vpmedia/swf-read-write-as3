@@ -27,14 +27,14 @@ import hu.vpmedia.swf.core.IdGenerator;
 import hu.vpmedia.utils.SWFUtil;
 
 public class SWFObfuscatorAbstractionImpl implements IBaseSWFObfuscator {
-    // protected var packageRenamer:PackageRenamer;
+    protected var packageRenamer:PackageRenamer;
     //protected var classRenamer:ClassRenamer;
     // protected var memberRenamer:MemberRenamer;
     protected var swfReader:SWFReaderWrapper;
 
     public function SWFObfuscatorAbstractionImpl() {
         swfReader = new SWFReaderWrapper();
-        // packageRenamer = new PackageRenamer();
+        packageRenamer = new PackageRenamer();
         //  classRenamer = new ClassRenamer();
         //  memberRenamer = new MemberRenamer();
     }

@@ -2,6 +2,8 @@ package {
 import flash.display.MovieClip;
 import flash.utils.ByteArray;
 
+import hu.vpmedia.swf.abstraction.SWFObfuscatorAbstractionImpl;
+
 import hu.vpmedia.swf.zero.SWFObfuscatorZeroImpl;
 
 // cannot compile with ASC2
@@ -31,6 +33,8 @@ public class Main extends MovieClip {
 
     private var zero:SWFObfuscatorZeroImpl;
 
+    private var abstraction:SWFObfuscatorAbstractionImpl;
+
     public function Main() {
         brute = new SWFObfuscatorBruteForceImpl();
         codeazour = new SWFObfuscatorCodeazurImpl();
@@ -38,12 +42,14 @@ public class Main extends MovieClip {
         swfassist = new SWFObfuscatorSWFAssistImpl();
         swfwire = new SWFObfuscatorSWFWireImpl();
         zero = new SWFObfuscatorZeroImpl();
+        abstraction = new SWFObfuscatorAbstractionImpl();
 
-        //var bruteForcedBA:ByteArray = brute.obfuscate(swfCloneAsByteArray);
-        var codeazourBA:ByteArray = codeazour.obfuscate(swfCloneAsByteArray);
+        var bruteForcedBA:ByteArray = brute.obfuscate(swfCloneAsByteArray);
+        //var codeazourBA:ByteArray = codeazour.obfuscate(swfCloneAsByteArray);
         //var evalBA:ByteArray = eval.obfuscate(swfCloneAsByteArray);
         //var swfassistBA:ByteArray = swfassist.obfuscate(swfCloneAsByteArray);
         //var swfwireBA:ByteArray = swfwire.obfuscate(swfCloneAsByteArray);
+        //var abstractionBA:ByteArray = abstraction.obfuscate(swfCloneAsByteArray);
     }
 
     private function get swfCloneAsByteArray():ByteArray {
