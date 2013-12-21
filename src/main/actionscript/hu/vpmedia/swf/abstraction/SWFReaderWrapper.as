@@ -25,7 +25,7 @@ import flash.utils.ByteArray;
 import hu.vpmedia.collections.HashMap;
 import hu.vpmedia.swf.core.IBaseSWFReader;
 
-import swf.SWFReader;
+import abstraction.swf.SWFReader;
 
 public class SWFReaderWrapper implements IBaseSWFReader {
     public var swf:SWFReader;
@@ -42,7 +42,8 @@ public class SWFReaderWrapper implements IBaseSWFReader {
         abcTagList = new Vector.<*>();
         abcTagMap = new HashMap(false);
         symbolTagList = new Vector.<*>();
-
+        swf = new SWFReader();
+        swf.parse(data);
     }
 
     public function getCode():uint {
@@ -50,36 +51,36 @@ public class SWFReaderWrapper implements IBaseSWFReader {
     }
 
     public function isActionScript3():Boolean {
-        return true;
+        return swf.asVersion == 3;
     }
 
     public function hasMetadata():Boolean {
-        return false;
+        return swf.metadata != null;
     }
 
     public function useNetwork():Boolean {
-        return true;
+        return swf.usesNetwork;
     }
 
     //
     public function getNumFrames():uint {
-        return 0;
+        return swf.totalFrames;
     }
 
     public function getVersion():uint {
-        return 0;
+        return swf.version;
     }
 
     public function getRectangle():Rectangle {
-        return null;
+        return swf.dimensions;
     }
 
     public function getFrameRate():Number {
-        return 0;
+        return swf.frameRate;
     }
 
     public function isCompressed():Boolean {
-        return false;
+        return swf.compressed;
     }
 }
 }

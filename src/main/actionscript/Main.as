@@ -49,7 +49,7 @@ public class Main extends MovieClip {
         //var evalBA:ByteArray = eval.obfuscate(swfCloneAsByteArray);
         //var swfassistBA:ByteArray = swfassist.obfuscate(swfCloneAsByteArray);
         //var swfwireBA:ByteArray = swfwire.obfuscate(swfCloneAsByteArray);
-        //var abstractionBA:ByteArray = abstraction.obfuscate(swfCloneAsByteArray);
+        var abstractionBA:ByteArray = abstraction.obfuscate(swfCloneAsByteArray);
     }
 
     private function get swfCloneAsByteArray():ByteArray {

@@ -46,7 +46,7 @@ public class SWFObfuscatorAbstractionImpl implements IBaseSWFObfuscator {
         var resultBA:ByteArray = SWFUtil.decompress(data);
         swfReader.parse(resultBA);
         // Rename packages
-        //packageRenamer.rename(swfReader.abcList);
+        packageRenamer.rename(swfReader.abcList);
         // writeBackTags(resultBA, packageRenamer.packages, packageRenamer.obfuscationMap);
         // Rename classes
         // classRenamer.rename(swfReader.abcList);
@@ -54,7 +54,7 @@ public class SWFObfuscatorAbstractionImpl implements IBaseSWFObfuscator {
         // memberRenamer.rename(swfReader.abcList);
         //processABCTags();
         // Compress and pass back
-        return SWFUtil.compress(writeSWF());
+        return SWFUtil.compress(resultBA);
     }
 
     /* private function processABCTags():void {
@@ -73,7 +73,7 @@ public class SWFObfuscatorAbstractionImpl implements IBaseSWFObfuscator {
      } */
 
     protected function writeSWF():ByteArray {
-        return swfReader.swf.bytes;
+        return null;
     }
 
     protected function writeBackTags(data:ByteArray, orderedList:Array, obfuscationMap:HashMap):void {
