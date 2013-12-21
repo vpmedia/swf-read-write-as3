@@ -18,7 +18,7 @@
  * =END CLOSED LICENSE
  */
 
-package hu.vpmedia.swf.zero {
+package hu.vpmedia.swf.abstraction {
 import flash.utils.ByteArray;
 
 import hu.vpmedia.collections.HashMap;
@@ -26,14 +26,14 @@ import hu.vpmedia.swf.core.IBaseSWFObfuscator;
 import hu.vpmedia.swf.core.IdGenerator;
 import hu.vpmedia.utils.SWFUtil;
 
-public class SWFObfuscatorZeroImpl implements IBaseSWFObfuscator {
+public class SWFObfuscatorAbstractionImpl implements IBaseSWFObfuscator {
    // protected var packageRenamer:PackageRenamer;
     //protected var classRenamer:ClassRenamer;
     // protected var memberRenamer:MemberRenamer;
-    protected var swfReader:ZeroReader;
+    protected var swfReader:AbstractionReader;
 
-    public function SWFObfuscatorZeroImpl() {
-        swfReader = new ZeroReader();
+    public function SWFObfuscatorAbstractionImpl() {
+        swfReader = new AbstractionReader();
        // packageRenamer = new PackageRenamer();
         //  classRenamer = new ClassRenamer();
         //  memberRenamer = new MemberRenamer();
@@ -73,7 +73,7 @@ public class SWFObfuscatorZeroImpl implements IBaseSWFObfuscator {
      } */
 
     protected function writeSWF():ByteArray {
-        return swfReader.swf.toSWFData(null);
+        return swfReader.swf.bytes;
     }
 
     protected function writeBackTags(data:ByteArray, orderedList:Array, obfuscationMap:HashMap):void {
