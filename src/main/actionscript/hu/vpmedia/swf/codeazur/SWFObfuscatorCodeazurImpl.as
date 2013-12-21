@@ -29,10 +29,10 @@ public class SWFObfuscatorCodeazurImpl implements IBaseSWFObfuscator {
     private var packageRenamer:PackageRenamer;
     private var classRenamer:ClassRenamer;
     private var memberRenamer:MemberRenamer;
-    private var swfReader:SWFCodeazurReader;
+    private var swfReader:SWFReaderWrapper;
 
     public function SWFObfuscatorCodeazurImpl() {
-        swfReader = new SWFCodeazurReader();
+        swfReader = new SWFReaderWrapper();
         packageRenamer = new PackageRenamer();
         classRenamer = new ClassRenamer();
         memberRenamer = new MemberRenamer();

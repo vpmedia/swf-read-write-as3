@@ -39,7 +39,7 @@ import flash.utils.ByteArray;
 import hu.vpmedia.collections.HashMap;
 import hu.vpmedia.swf.core.IBaseSWFReader;
 
-public class SWFWireReader implements IBaseSWFReader {
+public class SWFReaderWrapper implements IBaseSWFReader {
     private var swfReader:SWF10Reader;
     public var swf:SWF;
     public var abcTagList:Vector.<DoABCTag>;
@@ -47,7 +47,7 @@ public class SWFWireReader implements IBaseSWFReader {
     public var abcTagMap:HashMap;
     public var symbolTagList:Vector.<SymbolClassTag>;
 
-    public function SWFWireReader() {
+    public function SWFReaderWrapper() {
     }
 
     public function parse(data:ByteArray):void {

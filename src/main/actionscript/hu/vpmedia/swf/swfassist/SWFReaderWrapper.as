@@ -37,7 +37,7 @@ import org.libspark.swfassist.swf.tags.DoABC;
 import org.libspark.swfassist.swf.tags.SymbolClass;
 import org.libspark.swfassist.swf.tags.TagCodeConstants;
 
-public class SWFAssistReader implements IBaseSWFReader {
+public class SWFReaderWrapper implements IBaseSWFReader {
     public var swf:SWF;
     public var swfReader:SWFReader = new SWFReader();
     public var context:ReadingContext = new ReadingContext();
@@ -46,7 +46,7 @@ public class SWFAssistReader implements IBaseSWFReader {
     public var abcTagMap:HashMap;
     public var symbolTagList:Vector.<SymbolClass>;
 
-    public function SWFAssistReader() {
+    public function SWFReaderWrapper() {
     }
 
     public function parse(data:ByteArray):void {

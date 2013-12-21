@@ -33,10 +33,10 @@ public class SWFObfuscatorSWFWireImpl implements IBaseSWFObfuscator {
     protected var packageRenamer:PackageRenamer;
     //protected var classRenamer:ClassRenamer;
     // protected var memberRenamer:MemberRenamer;
-    protected var swfReader:SWFWireReader;
+    protected var swfReader:SWFReaderWrapper;
 
     public function SWFObfuscatorSWFWireImpl() {
-        swfReader = new SWFWireReader();
+        swfReader = new SWFReaderWrapper();
         packageRenamer = new PackageRenamer();
         //  classRenamer = new ClassRenamer();
         //  memberRenamer = new MemberRenamer();

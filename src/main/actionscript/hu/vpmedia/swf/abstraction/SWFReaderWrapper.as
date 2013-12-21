@@ -18,26 +18,23 @@
  * =END CLOSED LICENSE
  */
 
-package hu.vpmedia.swf.zero {
+package hu.vpmedia.swf.abstraction {
 import flash.geom.Rectangle;
 import flash.utils.ByteArray;
 
 import hu.vpmedia.collections.HashMap;
 import hu.vpmedia.swf.core.IBaseSWFReader;
 
-import zero.swf.SWF;
-import zero.swf.avm2.ABCClass;
-import zero.swf.avm2.ABCTrait;
-import zero.swf.utils.getDocClass;
+import swf.SWFReader;
 
-public class ZeroReader implements IBaseSWFReader {
-    public var swf:SWF;
+public class SWFReaderWrapper implements IBaseSWFReader {
+    public var swf:SWFReader;
     public var abcTagList:Vector.<*>;
     public var abcList:Vector.<*>;
     public var abcTagMap:HashMap;
     public var symbolTagList:Vector.<*>;
 
-    public function ZeroReader() {
+    public function SWFReaderWrapper() {
     }
 
     public function parse(data:ByteArray):void {
@@ -45,21 +42,7 @@ public class ZeroReader implements IBaseSWFReader {
         abcTagList = new Vector.<*>();
         abcTagMap = new HashMap(false);
         symbolTagList = new Vector.<*>();
-        swf = new SWF();
-        var swf:SWF = new SWF();
-        swf.initBySWFData(data, null);
-        var docClass:ABCClass = getDocClass(swf);
-        if (docClass) {
-            for each(var trait:ABCTrait in docClass.ctraitV) {
-                if (trait.name.name == "name") {
-                    if (trait.vkindAndVIndex) {
-                        var name:String = trait.vkindAndVIndex.value;
-                    }
-                    break;
-                }
-            }
 
-        }
     }
 
     public function getCode():uint {
@@ -80,11 +63,11 @@ public class ZeroReader implements IBaseSWFReader {
 
     //
     public function getNumFrames():uint {
-        return swf.FrameCount;
+        return 0;
     }
 
     public function getVersion():uint {
-        return swf.Version;
+        return 0;
     }
 
     public function getRectangle():Rectangle {
@@ -92,7 +75,7 @@ public class ZeroReader implements IBaseSWFReader {
     }
 
     public function getFrameRate():Number {
-        return swf.FrameRate;
+        return 0;
     }
 
     public function isCompressed():Boolean {

@@ -38,10 +38,10 @@ public class SWFObfuscatorSWFAssistImpl implements IBaseSWFObfuscator {
     protected var packageRenamer:PackageRenamer;
     //protected var classRenamer:ClassRenamer;
     // protected var memberRenamer:MemberRenamer;
-    protected var swfReader:SWFAssistReader;
+    protected var swfReader:SWFReaderWrapper;
 
     public function SWFObfuscatorSWFAssistImpl() {
-        swfReader = new SWFAssistReader();
+        swfReader = new SWFReaderWrapper();
         packageRenamer = new PackageRenamer();
         //  classRenamer = new ClassRenamer();
         //  memberRenamer = new MemberRenamer();

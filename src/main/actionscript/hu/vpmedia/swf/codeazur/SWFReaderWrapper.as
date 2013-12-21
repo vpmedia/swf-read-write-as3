@@ -33,14 +33,14 @@ import flash.utils.ByteArray;
 import hu.vpmedia.collections.HashMap;
 import hu.vpmedia.swf.core.IBaseSWFReader;
 
-public class SWFCodeazurReader implements IBaseSWFReader {
+public class SWFReaderWrapper implements IBaseSWFReader {
     public var swf:SWF;
     // public var abcTagList:Vector.<TagDoABC>;
     public var abcList:Vector.<ABC>;
     public var abcTagMap:HashMap;
     public var symbolTagList:Vector.<TagSymbolClass>;
 
-    public function SWFCodeazurReader() {
+    public function SWFReaderWrapper() {
     }
 
     public function parse(data:ByteArray):void {
