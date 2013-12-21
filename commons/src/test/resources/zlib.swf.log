@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Parsing swf file:/c:/Work/classes_repo/git-own/swf-read-write-as3/commons/src/test/resources/zlib.swf -->
+<swf xmlns="http://macromedia/2003/swfx" version="17" framerate="24.0" size="11000x8000" compressed="true" >
+  <!-- framecount=1 length=6536 -->
+  <FileAttributes useDirectBlit="false" useGPU="false" hasMetadata="true" actionScript3="true" suppressCrossDomainCaching="false" swfRelativeUrls="false" useNetwork="false"/>
+  <Metadata>
+        <![CDATA[<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> <rdf:Description rdf:about="" xmlns:xmp="http://ns.adobe.com/xap/1.0/"> <xmp:CreatorTool>Adobe Flash Professional CS6 - build 537</xmp:CreatorTool> <xmp:CreateDate>2013-12-20T22:42:11+01:00</xmp:CreateDate> <xmp:MetadataDate>2013-12-20T22:44:12+01:00</xmp:MetadataDate> <xmp:ModifyDate>2013-12-20T22:44:12+01:00</xmp:ModifyDate> </rdf:Description> <rdf:Description rdf:about="" xmlns:dc="http://purl.org/dc/elements/1.1/"> <dc:format>application/x-shockwave-flash</dc:format> </rdf:Description> <rdf:Description rdf:about="" xmlns:xmpMM="http://ns.adobe.com/xap/1.0/mm/" xmlns:stRef="http://ns.adobe.com/xap/1.0/sType/ResourceRef#"> <xmpMM:InstanceID>xmp.iid:81E184A5BF69E3119BC5CA998FBB63ED</xmpMM:InstanceID> <xmpMM:DocumentID>xmp.did:81E184A5BF69E3119BC5CA998FBB63ED</xmpMM:DocumentID> <xmpMM:OriginalDocumentID>xmp.did:7BE184A5BF69E3119BC5CA998FBB63ED</xmpMM:OriginalDocumentID> <xmpMM:DerivedFrom rdf:parseType="Resource"> <stRef:instanceID>xmp.iid:7BE184A5BF69E3119BC5CA998FBB63ED</stRef:instanceID> <stRef:documentID>xmp.did:7BE184A5BF69E3119BC5CA998FBB63ED</stRef:documentID> <stRef:originalDocumentID>xmp.did:7BE184A5BF69E3119BC5CA998FBB63ED</stRef:originalDocumentID> </xmpMM:DerivedFrom> </rdf:Description> </rdf:RDF> 
+]]>
+  </Metadata>
+  <SetBackgroundColor color="#FFFFFF"/>
+  <DoABC name=""/>
+  <SymbolClass>
+    <Symbol idref="0" className="Test_fla.MainTimeline" />
+  </SymbolClass>
+  <ShowFrame/>
+</swf>

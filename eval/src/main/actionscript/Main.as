@@ -6,9 +6,6 @@ import flash.utils.ByteArray;
 import hu.vpmedia.swf.eval.SWFObfuscatorEvalImpl;
 import hu.vpmedia.utils.SWFUtil;
 
-// cannot compile with ASC2
-//import hu.vpmedia.codec.abc.obfuscators.as3commons.SWFObfuscatorAS3CommonsImpl;
-
 public class Main extends MovieClip {
 
     // TEST ASSET

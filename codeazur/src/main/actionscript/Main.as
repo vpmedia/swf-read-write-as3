@@ -6,9 +6,7 @@ import flash.utils.ByteArray;
 import hu.vpmedia.swf.bruteforce.SWFObfuscatorBruteForceImpl;
 import hu.vpmedia.swf.codeazur.SWFObfuscatorCodeazurImpl;
 import hu.vpmedia.utils.SWFUtil;
-
-// cannot compile with ASC2
-//import hu.vpmedia.codec.abc.obfuscators.as3commons.SWFObfuscatorAS3CommonsImpl;
+import hu.vpmedia.utils.SWFUtil;
 
 public class Main extends MovieClip {
 
@@ -34,8 +32,8 @@ public class Main extends MovieClip {
         codeazur = new SWFObfuscatorCodeazurImpl();
 
         trace("#### BRUTE FORCE ####");
-        var bruteForcedBA:ByteArray = brute.obfuscate(SWFUtil.clone(new symbolClass()));
-        var codeazurBA:ByteArray = codeazur.obfuscate(SWFUtil.clone(new symbolClass()));
+        var bruteForcedBA:ByteArray = brute.obfuscate(SWFUtil.decompress(SWFUtil.clone(new symbolClass())));
+        //var codeazurBA:ByteArray = codeazur.obfuscate(SWFUtil.clone(new symbolClass()));
     }
 }
 }

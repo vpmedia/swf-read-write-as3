@@ -58,32 +58,38 @@ public class SWFUtil {
     }
 
     public static function decompress(data:ByteArray):ByteArray {
-        data.position = 0;
-        var header:ByteArray = new ByteArray();
-        var compressed:ByteArray = new ByteArray();
-        var result:ByteArray = new ByteArray();
-        // Read compression flag
         var compressionType:String = data.readMultiByte(3, "us-ascii"); // CWS, ZWS
         data.position = 0;
         trace("SWFUtil::decompress: " + compressionType);
-        var compressionAlgorithm:String = CompressionAlgorithm.ZLIB;
-        if (compressionType == DECOMPRESSED_FLAG) {
-            // NONE
+        if (compressionType == DECOMPRESSED_FLAG)
             return data;
-        } else if (compressionType == LZMA_FLAG) {
-           // TODO :implement
-            return data;
-        } else {
-            // ZLIB
-            header.writeBytes(data, 3, 5); // read the uncompressed header, excluding the signature
-            compressed.writeBytes(data, 8); // read the rest, compressed
-            compressed.uncompress(compressionAlgorithm);
-            result.writeMultiByte(DECOMPRESSED_FLAG, "us-ascii"); // mark as uncompressed
-            result.writeBytes(header); // write the header back
-            result.writeBytes(compressed); // write the now uncompressed content
-            trace("[SWFCompressor]", "decompress", data.length, "=>", result.length);
-            result.position = 0;
-        }
+        else if (compressionType == LZMA_FLAG)
+            return decompressLZMA(data);
+        else  if (compressionType == ZLIB_FLAG)
+            return decompressZLIB(data);
+        return null;
+    }
+
+    private static function decompressLZMA(data:ByteArray):ByteArray {
+        trace("SWFUtil::decompressLZMA: " + data.position + " | " + data.length);
+        return data;
+    }
+
+    private static function decompressZLIB(data:ByteArray):ByteArray {
+        trace("SWFUtil::decompressZLIB: " + data.position + " | " + data.length);
+        var result:ByteArray = new ByteArray();
+        var header:ByteArray = new ByteArray();
+        var compressed:ByteArray = new ByteArray();
+        // read the uncompressed header, excluding the signature
+        header.writeBytes(data, 3, 5);
+        // read the rest, compressed
+        compressed.writeBytes(data, 8);
+        compressed.uncompress(CompressionAlgorithm.ZLIB);
+        result.writeMultiByte(DECOMPRESSED_FLAG, "us-ascii"); // mark as uncompressed
+        result.writeBytes(header); // write the header back
+        result.writeBytes(compressed); // write the now uncompressed content
+        trace("[SWFCompressor]", "decompress", data.length, "=>", result.length);
+        result.position = 0;
         return result;
     }
 }
