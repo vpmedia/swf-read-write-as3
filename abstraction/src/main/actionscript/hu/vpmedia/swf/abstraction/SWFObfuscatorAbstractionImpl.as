@@ -21,10 +21,7 @@
 package hu.vpmedia.swf.abstraction {
 import flash.utils.ByteArray;
 
-import hu.vpmedia.collections.HashMap;
 import hu.vpmedia.swf.core.IBaseSWFObfuscator;
-import hu.vpmedia.swf.core.IdGenerator;
-import hu.vpmedia.utils.SWFUtil;
 
 public class SWFObfuscatorAbstractionImpl implements IBaseSWFObfuscator {
     protected var packageRenamer:PackageRenamer;

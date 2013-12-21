@@ -27,21 +27,7 @@ public class Main extends MovieClip {
         removeEventListener(Event.ADDED_TO_STAGE, onAdded);
 
         zero = new SWFObfuscatorZeroImpl();
-        var zeroBA:ByteArray = zero.obfuscate(compressedSWF);
-    }
-
-    private function get compressedSWF():ByteArray {
-        const result:ByteArray = SWFUtil.clone(new symbolClass());
-        if (result.position)
-            throw new Error("Position should be 0.");
-        return result;
-    }
-
-    private function get decompressedSWF():ByteArray {
-        const result:ByteArray = SWFUtil.decompress(compressedSWF);
-        if (result.position)
-            throw new Error("Position should be 0.");
-        return result;
+        var zeroBA:ByteArray = zero.obfuscate(SWFUtil.clone(new symbolClass()));
     }
 }
 }

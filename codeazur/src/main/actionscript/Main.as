@@ -34,22 +34,8 @@ public class Main extends MovieClip {
         codeazur = new SWFObfuscatorCodeazurImpl();
 
         trace("#### BRUTE FORCE ####");
-        var bruteForcedBA:ByteArray = brute.obfuscate(compressedSWF);
-         var codeazurBA:ByteArray = codeazur.obfuscate(decompressedSWF);
-    }
-
-    private function get compressedSWF():ByteArray {
-        const result:ByteArray = SWFUtil.clone(new symbolClass());
-        if (result.position)
-            throw new Error("Position should be 0.");
-        return result;
-    }
-
-    private function get decompressedSWF():ByteArray {
-        const result:ByteArray = SWFUtil.decompress(compressedSWF);
-        if (result.position)
-            throw new Error("Position should be 0.");
-        return result;
+        var bruteForcedBA:ByteArray = brute.obfuscate(SWFUtil.clone(new symbolClass()));
+        var codeazurBA:ByteArray = codeazur.obfuscate(SWFUtil.clone(new symbolClass()));
     }
 }
 }
