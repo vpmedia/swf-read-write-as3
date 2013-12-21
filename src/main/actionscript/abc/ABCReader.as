@@ -53,7 +53,7 @@ package abc {
 				_parseABC(bytes)
 		}
 		
-		public function get abc():ABC {
+		public function getABC():ABC {
 			return _abc
 		}
 		
@@ -70,8 +70,8 @@ package abc {
 				
 				if(abcModifyFunc != null){
 					abcModifyFunc(_abc)
-					var abcBytes:ByteArray = ABCWriter.writeABC(_abc)
-					this.modABC = abcBytes
+					var abcBytesBA:ByteArray = ABCWriter.writeABC(_abc)
+					this.modABC = abcBytesBA
 				}
 				abcs.push(_abc)
 			}

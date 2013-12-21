@@ -84,7 +84,7 @@ package abc {
 		}
 		
 		public static function readFrom(bytes:ByteArray):ABC {
-			return new ABCReader(bytes).abc
+			return new ABCReader(bytes).getABC()
 		}
 		
 		public function toString():String {

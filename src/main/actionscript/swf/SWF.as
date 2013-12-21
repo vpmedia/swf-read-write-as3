@@ -33,7 +33,7 @@ package swf {
 		public function get abcs():Vector.<ABC> {
 			var vec:Vector.<ABC> = new <ABC>[]
 			for each(var t:Tag in tags){
-				if(t is DoABCTag) vec.push((t as DoABCTag).abc)
+				if(t is DoABCTag) vec.push((t as DoABCTag).getABC())
 			}
 			return vec
 		}

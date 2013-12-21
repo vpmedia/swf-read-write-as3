@@ -18,11 +18,11 @@ package swf.tags {
 			_abc = abc
 		}
 		
-		public function get abc():ABC {
+		public function getABC():ABC {
 			return _abc
 		}
 		
-		public function set abc(abc:ABC):void {
+		public function setABC(abc:ABC):void {
 			_abc = abc
 		}
 		
@@ -32,7 +32,7 @@ package swf.tags {
 			abcBytes.endian = Endian.LITTLE_ENDIAN
 			reader.bytes.readBytes(abcBytes, 0, length)
 			abcBytes.position = 0
-			_abc = new ABCReader(abcBytes, true).abc
+			_abc = new ABCReader(abcBytes, true).getABC()
 			_abc.abcname = 'DoABC'
 		}
 		
