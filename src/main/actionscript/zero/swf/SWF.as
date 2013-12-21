@@ -71,11 +71,12 @@ import zero.codec.LZMAUncompressSWF;
 		public function swfData2Bytes(swfData:ByteArray):ByteArray{
 			if(swfData.length>8){
 			}else{
-				throw new Error("不是有效的SWF文件："+swfData);
+				throw new Error("Too short data："+swfData);
 			}
 			swfData.position=0;
-			type=swfData.readUTFBytes(3);//压缩和非压缩标记
-			
+			//type=swfData.readUTFBytes(3);//压缩和非压缩标记
+			type=swfData.readMultiByte(3, "us-ascii");//压缩和非压缩标记
+			trace(this, "swfData2Bytes", type);
 			switch(type){
 				case "CWS":
 					
@@ -84,7 +85,7 @@ import zero.codec.LZMAUncompressSWF;
 					try{
 						uncompressedData.uncompress();
 					}catch(e:Error){
-						throw new Error("CWS 解压缩数据时出错");
+						throw new Error("CWS uncompression error");
 					}
 					
 					var bytes:ByteArray=new ByteArray();//类似于 stage.loaderInfo.bytes
@@ -219,7 +220,7 @@ import zero.codec.LZMAUncompressSWF;
 					var outputLen:int=100;
 					outputData.writeBytes(swfData,0,Math.min(outputLen,swfData.length));
 					throw new Error(
-						"不是有效的SWF文件："+outputData+(
+						"Parser error："+outputData+(
 							outputLen<swfData.length
 							?
 							"..."

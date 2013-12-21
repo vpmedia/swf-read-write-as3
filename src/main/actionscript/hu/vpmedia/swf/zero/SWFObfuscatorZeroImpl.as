@@ -24,7 +24,6 @@ import flash.utils.ByteArray;
 import hu.vpmedia.collections.HashMap;
 import hu.vpmedia.swf.core.IBaseSWFObfuscator;
 import hu.vpmedia.swf.core.IdGenerator;
-import hu.vpmedia.utils.SWFUtil;
 
 public class SWFObfuscatorZeroImpl implements IBaseSWFObfuscator {
     // protected var packageRenamer:PackageRenamer;
@@ -43,8 +42,8 @@ public class SWFObfuscatorZeroImpl implements IBaseSWFObfuscator {
         trace(this, "obfuscate");
         // Decompress is neccessary
         //var resultBA:ByteArray = swfReader.compressed ? SWFCompressor.decompress (data) : data;
-        var resultBA:ByteArray = SWFUtil.decompress(data);
-        swfReader.parse(resultBA);
+        // var resultBA:ByteArray = SWFUtil.decompress(data);
+        swfReader.parse(data);
         // Rename packages
         //packageRenamer.rename(swfReader.abcList);
         // writeBackTags(resultBA, packageRenamer.packages, packageRenamer.obfuscationMap);
@@ -52,25 +51,9 @@ public class SWFObfuscatorZeroImpl implements IBaseSWFObfuscator {
         // classRenamer.rename(swfReader.abcList);
         // Rename members
         // memberRenamer.rename(swfReader.abcList);
-        //processABCTags();
         // Compress and pass back
-        return SWFUtil.compress(writeSWF());
+        return data;  // SWFUtil.compress(writeSWF())
     }
-
-    /* private function processABCTags():void {
-     var validator:ABCSecurityValidator = new ABCSecurityValidator();
-     var patcher:ABCPatcher = new ABCPatcher(validator, 0, 0, printTags);
-     swfReader.swf.visit(patcher);
-     }*/
-
-    /*private function printTags():void {
-     // Trace out the patched file ( call writeSWF() to write to a file )
-     var printerContext:ABCPrintingContext = new ABCPrintingContext();
-     printerContext.methodLimit = 0;
-     printerContext.readMethodCode = false;
-     var printer:ABCInfoPrinter = new ABCInfoPrinter(printerContext, 0);
-     swfReader.swf.visit(printer);
-     } */
 
     protected function writeSWF():ByteArray {
         return swfReader.swf.toSWFData(null);

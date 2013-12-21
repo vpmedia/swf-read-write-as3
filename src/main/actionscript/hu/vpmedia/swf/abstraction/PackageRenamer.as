@@ -19,6 +19,8 @@
  */
 
 package hu.vpmedia.swf.abstraction {
+import abstraction.abc.ABC;
+
 import hu.vpmedia.collections.HashMap;
 import hu.vpmedia.swf.core.BaseRenameRules;
 import hu.vpmedia.swf.core.IdGenerator;
@@ -33,8 +35,9 @@ public class PackageRenamer {
     public function PackageRenamer() {
     }
 
-    public function rename(abcList:Vector.<*>):void {
-        var abc:*;
+    public function rename(abcList:Vector.<ABC>):void {
+        trace(this, "rename", abcList);
+        var abc:ABC;
         // collect
         packageHierarchy = new PackageHierarchy();
         packageList = [];

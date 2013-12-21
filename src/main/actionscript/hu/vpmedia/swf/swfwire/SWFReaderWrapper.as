@@ -24,7 +24,6 @@ import com.swfwire.decompiler.SWFByteArray;
 import com.swfwire.decompiler.SWFReadResult;
 import com.swfwire.decompiler.abc.ABCFile;
 import com.swfwire.decompiler.data.swf.SWF;
-import com.swfwire.decompiler.data.swf.records.RectangleRecord;
 import com.swfwire.decompiler.data.swf.tags.MetadataTag;
 import com.swfwire.decompiler.data.swf.tags.SWFTag;
 import com.swfwire.decompiler.data.swf.tags.SetBackgroundColorTag;
@@ -33,13 +32,11 @@ import com.swfwire.decompiler.data.swf8.tags.FileAttributesTag;
 import com.swfwire.decompiler.data.swf9.tags.DoABCTag;
 import com.swfwire.decompiler.data.swf9.tags.SymbolClassTag;
 
-import flash.geom.Rectangle;
 import flash.utils.ByteArray;
 
 import hu.vpmedia.collections.HashMap;
-import hu.vpmedia.swf.core.IBaseSWFReader;
 
-public class SWFReaderWrapper implements IBaseSWFReader {
+public class SWFReaderWrapper {
     private var swfReader:SWF10Reader;
     public var swf:SWF;
     public var abcTagList:Vector.<DoABCTag>;
@@ -59,38 +56,8 @@ public class SWFReaderWrapper implements IBaseSWFReader {
         var swfBA:SWFByteArray = new SWFByteArray(data);
         var swfReadResult:SWFReadResult = swfReader.read(swfBA);
         swf = swfReadResult.swf;
+        trace(this, "parse", swf);
         processTags();
-    }
-
-    public function getBackgroundColor():uint {
-        return 0;
-    }
-
-    public function getFileLength():uint {
-        return swf.header.uncompressedSize;
-    }
-
-    //
-    public function getNumFrames():uint {
-        return swf.header.frameCount;
-    }
-
-    public function getVersion():uint {
-        return swf.header.fileVersion;
-    }
-
-    public function getRectangle():Rectangle {
-        var rect:RectangleRecord = swf.header.frameSize;
-        var result:Rectangle = new Rectangle(rect.xMin, rect.yMin, rect.xMax, rect.yMax);
-        return result;
-    }
-
-    public function getFrameRate():Number {
-        return swf.header.frameRate;
-    }
-
-    public function isCompressed():Boolean {
-        return true;
     }
 
     protected function processTags():void {

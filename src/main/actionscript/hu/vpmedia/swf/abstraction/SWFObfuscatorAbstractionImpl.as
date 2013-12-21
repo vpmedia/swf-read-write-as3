@@ -46,7 +46,7 @@ public class SWFObfuscatorAbstractionImpl implements IBaseSWFObfuscator {
         var resultBA:ByteArray = SWFUtil.decompress(data);
         swfReader.parse(resultBA);
         // Rename packages
-        packageRenamer.rename(swfReader.abcList);
+        packageRenamer.rename(swfReader.swf.swf.abcs);
         // writeBackTags(resultBA, packageRenamer.packages, packageRenamer.obfuscationMap);
         // Rename classes
         // classRenamer.rename(swfReader.abcList);

@@ -21,21 +21,17 @@
 package hu.vpmedia.swf.codeazur {
 import com.codeazur.as3abc.ABC;
 import com.codeazur.as3swf.SWF;
-import com.codeazur.as3swf.data.SWFRectangle;
 import com.codeazur.as3swf.tags.ITag;
 import com.codeazur.as3swf.tags.TagDoABC;
 import com.codeazur.as3swf.tags.TagFileAttributes;
 import com.codeazur.as3swf.tags.TagSymbolClass;
 
-import flash.geom.Rectangle;
 import flash.utils.ByteArray;
 
 import hu.vpmedia.collections.HashMap;
-import hu.vpmedia.swf.core.IBaseSWFReader;
 
-public class SWFReaderWrapper implements IBaseSWFReader {
+public class SWFReaderWrapper {
     public var swf:SWF;
-    // public var abcTagList:Vector.<TagDoABC>;
     public var abcList:Vector.<ABC>;
     public var abcTagMap:HashMap;
     public var symbolTagList:Vector.<TagSymbolClass>;
@@ -44,43 +40,12 @@ public class SWFReaderWrapper implements IBaseSWFReader {
     }
 
     public function parse(data:ByteArray):void {
-        //abcTagList = new Vector.<TagDoABC>();
         abcList = new Vector.<ABC>();
         abcTagMap = new HashMap(false);
         symbolTagList = new Vector.<TagSymbolClass>();
         swf = new SWF(data);
+        //trace(swf);
         processTags();
-    }
-
-    public function getBackgroundColor():uint {
-        return swf.backgroundColor;
-    }
-
-    public function getFileLength():uint {
-        return swf.fileLength;
-    }
-
-    //
-    public function getNumFrames():uint {
-        return swf.frameCount;
-    }
-
-    public function getVersion():uint {
-        return swf.version;
-    }
-
-    public function getRectangle():Rectangle {
-        var rect:SWFRectangle = swf.frameSize;
-        var result:Rectangle = new Rectangle(rect.xmin, rect.ymin, rect.xmax, rect.ymax);
-        return result;
-    }
-
-    public function getFrameRate():Number {
-        return swf.frameRate;
-    }
-
-    public function isCompressed():Boolean {
-        return swf.compressed;
     }
 
     protected function processTags():void {

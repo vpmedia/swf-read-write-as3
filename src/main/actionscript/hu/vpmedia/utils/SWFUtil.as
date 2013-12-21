@@ -53,6 +53,7 @@ public class SWFUtil {
         compressed.writeBytes(header);
         compressed.writeBytes(decompressed);
         trace("[SWFCompressor]", "compress", compressionAlgorithm, data.length, "=>", compressed.length);
+        compressed.position = 0;
         return compressed;
     }
 
@@ -61,6 +62,7 @@ public class SWFUtil {
         data.position = 0;
         var compressionType:String = data.readMultiByte(3, "us-ascii"); // CWS, ZWS
         data.position = 0;
+        trace("SWFUtil::decompress: " + compressionType)
         if (compressionType == LZMA_FLAG) {
             return LZMAUncompressSWF(data);
         }
@@ -75,6 +77,7 @@ public class SWFUtil {
         decompressed.writeBytes(header); // write the header back
         decompressed.writeBytes(compressed); // write the now uncompressed content
         trace("[SWFCompressor]", "decompress", data.length, "=>", decompressed.length);
+        decompressed.position = 0;
         return decompressed;
     }
 }

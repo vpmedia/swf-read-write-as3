@@ -47,7 +47,7 @@ public class SWFObfuscatorBruteForceImpl implements IBaseSWFObfuscator {
         trace(this, "obfuscate");
         swfReader.parse(data);
         // Decompress is neccessary
-        var resultBA:ByteArray = swfReader.isCompressed() ? SWFUtil.decompress(data) : data;
+        var resultBA:ByteArray = swfReader.swf.compressed ? SWFUtil.decompress(data) : data;
         // Rename packages
         packageRenamer.rename(swfReader.abcList);
         writeBackTags(resultBA, packageRenamer.getPackages(), packageRenamer.getObfuscationMap());

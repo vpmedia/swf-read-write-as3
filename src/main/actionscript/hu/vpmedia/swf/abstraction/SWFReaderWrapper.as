@@ -19,68 +19,32 @@
  */
 
 package hu.vpmedia.swf.abstraction {
-import flash.geom.Rectangle;
+import abstraction.abc.ABCInspector;
+import abstraction.swf.SWFReader;
+import abstraction.swf.tags.DoABC2Tag;
+import abstraction.swf.tags.Tag;
+
 import flash.utils.ByteArray;
 
-import hu.vpmedia.collections.HashMap;
-import hu.vpmedia.swf.core.IBaseSWFReader;
-
-import abstraction.swf.SWFReader;
-
-public class SWFReaderWrapper implements IBaseSWFReader {
+public class SWFReaderWrapper {
     public var swf:SWFReader;
-    public var abcTagList:Vector.<*>;
-    public var abcList:Vector.<*>;
-    public var abcTagMap:HashMap;
-    public var symbolTagList:Vector.<*>;
+    public var abcTagList:Vector.<DoABC2Tag>;
 
     public function SWFReaderWrapper() {
     }
 
     public function parse(data:ByteArray):void {
-        abcList = new Vector.<*>();
-        abcTagList = new Vector.<*>();
-        abcTagMap = new HashMap(false);
-        symbolTagList = new Vector.<*>();
-        swf = new SWFReader();
-        swf.parse(data);
-    }
-
-    public function getCode():uint {
-        return 0;
-    }
-
-    public function isActionScript3():Boolean {
-        return swf.asVersion == 3;
-    }
-
-    public function hasMetadata():Boolean {
-        return swf.metadata != null;
-    }
-
-    public function useNetwork():Boolean {
-        return swf.usesNetwork;
-    }
-
-    //
-    public function getNumFrames():uint {
-        return swf.totalFrames;
-    }
-
-    public function getVersion():uint {
-        return swf.version;
-    }
-
-    public function getRectangle():Rectangle {
-        return swf.dimensions;
-    }
-
-    public function getFrameRate():Number {
-        return swf.frameRate;
-    }
-
-    public function isCompressed():Boolean {
-        return swf.compressed;
+        abcTagList = new Vector.<DoABC2Tag>();
+        swf = new SWFReader(data);
+        trace(this, "parse", swf);
+        for each(var t:Tag in swf.swf.tags) {
+            if (t is DoABC2Tag) {
+                var abct:DoABC2Tag = t as DoABC2Tag
+                abcTagList.push(abct);
+                var inspector:ABCInspector = new ABCInspector(abct.getABC());
+                trace(inspector.inspect)
+            }
+        }
     }
 }
 }
